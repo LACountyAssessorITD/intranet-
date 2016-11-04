@@ -20,7 +20,7 @@ module.exports = function(app) {
 	//
 
 	/*This post request is not working properly given i still get a
-	* 404 error when the /intranet/public/dbaccess files are requested.
+	* 500 error when the /intranet/public/dbaccess files are requested.
 	*/
 	app.post('/dbaccess/hr-ann-get.php', function (req, res) {
 		console.log("posting");
