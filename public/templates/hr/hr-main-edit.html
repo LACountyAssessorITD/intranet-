@@ -1,0 +1,34 @@
+<h1> Human Resources Page Admin</h1>
+
+<h3>Edit Page </h3>
+
+
+
+<form ng-submit="vm.updatePage()">
+  <div class="form-group">
+    <label for="pageHeading">Page Heading:</label>
+    <input type="text" ng-model="heading" class="form-control" id="ann-title" placeholder="Heading">
+  </div>
+  <div class="form-group">
+    <label for="pageBody">Page Body:</label>
+    <textarea class="form-control" ng-model="body_content"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="pagePhoto">Photo Link:</label>
+    <input type="text" ng-model="photo_link" class="form-control" id="ann-title" placeholder="Photo URL">
+  </div>
+  <div class="form-group">
+    <label for="pageVideo">Video Link:</label>
+    <input type="text" ng-model="video_link" class="form-control" id="ann-title" placeholder="Video URL">
+  </div>
+  <div class="form-group">
+    <label for="pageHTML">Pure HTML:</label>
+    <textarea class="form-control" ng-model="pure_html"></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-default">Update</button>
+</form>
+
+
+</br>
+<a href="/#/hr">Back To HR Page</a>
