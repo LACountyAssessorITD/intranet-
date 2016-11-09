@@ -4,6 +4,8 @@ var app            = express();
 var mongoose       = require('mongoose');
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
+var mysql          = require('mysql');
+
 
 // configuration ===========================================
 
@@ -41,8 +43,27 @@ app.use(express.static(__dirname + '/public')); // set the static files location
 //   //
 //   // });
 // }));
-
-
+// 
+// var connection = mysql.createConnection({
+//   host     : 'uscitp.com',
+//   user     : 'tastleonar',
+//   password : 'uscitp2016',
+//   database : 'tastleon_intranet'
+// });
+//
+// connection.connect();
+// // var sql = "SELECT ?? FROM ?? ";
+// // var inserts = ['heading', 'Announcements'];
+// // sql = mysql.format(sql, inserts);
+// connection.query("SELECT *
+//             FROM Announcements
+//             ORDER BY date_created DESC LIMIT 1", function(err, rows, fields) {
+//   if (err) throw err;
+//
+//   console.log('The solution is: ', rows[0].solution);
+// });
+//
+// connection.end();
 
 // routes ==================================================
 //require('./app/routes')(app,passport); // pass our application into our routes
