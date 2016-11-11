@@ -43,31 +43,29 @@ app.use(express.static(__dirname + '/public')); // set the static files location
 //   //
 //   // });
 // }));
-// 
-// var connection = mysql.createConnection({
-//   host     : 'uscitp.com',
-//   user     : 'tastleonar',
-//   password : 'uscitp2016',
-//   database : 'tastleon_intranet'
-// });
 //
+var connection = mysql.createConnection({
+  host     : 'uscitp.com',
+  user     : 'tastleonar',
+  password : 'uscitp2016',
+  database : 'tastleon_intranet'
+});
+
 // connection.connect();
 // // var sql = "SELECT ?? FROM ?? ";
 // // var inserts = ['heading', 'Announcements'];
 // // sql = mysql.format(sql, inserts);
-// connection.query("SELECT *
-//             FROM Announcements
-//             ORDER BY date_created DESC LIMIT 1", function(err, rows, fields) {
+// connection.query('SELECT * FROM Announcements', function(err, rows, fields) {
 //   if (err) throw err;
 //
-//   console.log('The solution is: ', rows[0].solution);
+//   console.log('The solution is: ', rows[0]);
 // });
 //
 // connection.end();
 
 // routes ==================================================
 //require('./app/routes')(app,passport); // pass our application into our routes
-require('./app/routes')(app); // pass our application into our routes
+require('./app/routes')(app, mysql); // pass our application into our routes
 
 
 // start app ===============================================
