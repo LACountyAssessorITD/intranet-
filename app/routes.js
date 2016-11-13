@@ -10,7 +10,7 @@ module.exports = function(app, mysql) {
 	// route to handle all angular requests
 
 	// app.post('/login',
- //  	passport.authenticate('WindowsAuthentication', {
+ 	//passport.authenticate('WindowsAuthentication', {
     //                               successRedirect: '/ipassed',
     //                               failureRedirect: '/failure',
     //                               failureFlash:    true })
@@ -54,11 +54,32 @@ module.exports = function(app, mysql) {
 		 });
 		  myConn.end();
 		 res.send(JSON.stringify(dataReceived));
-
-
 		});
-
 	});
+
+	app.post('/get_page', function (req, res){
+		console.log("retrieving page "+req.body.page_id);
+		var pageContentReceived;
+		var myConn = testConn();
+		myConn.query('SELECT * FROM Pages WHERE id = '+req.body.page_id, function(err, rows, fields) {
+		//res.send("grateful for your service");
+		//myConn.query('SELECT * FROM ')
+
+
+		if (err){
+			console.log(err);
+		  throw err;
+		}
+
+	   // console.log('The solution is: ', rows[0]);
+	   pageContentReceived = rows[0];
+	//    rows.forEach(function(element){
+	// 	   console.log(element);
+	//    });
+		myConn.end();
+	   res.send(JSON.stringify(pageContentReceived));
+   	});
+   });
 
 	app.get('*', function(req, res) {
 		res.sendfile('./public/index.html');

@@ -1,7 +1,7 @@
 // modules =================================================
 var express        = require('express');
 var app            = express();
-var mongoose       = require('mongoose');
+//var mongoose       = require('mongoose');
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
 var mysql          = require('mysql');
@@ -65,6 +65,7 @@ var connection = mysql.createConnection({
 
 // routes ==================================================
 //require('./app/routes')(app,passport); // pass our application into our routes
+
 require('./app/routes')(app, mysql); // pass our application into our routes
 
 

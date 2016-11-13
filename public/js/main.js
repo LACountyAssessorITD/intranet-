@@ -54,6 +54,8 @@ angular
             // .when('/server/insertAnn',{
             //     templateUrl: '/templates/insertAnn.php'
             // });
+            // use the HTML5 History API
+            //locationProvider.html5Mode(true);
     })
 .controller('HomeController', function($location) {
     var vm = this;
