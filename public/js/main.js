@@ -31,6 +31,17 @@ angular
             .when('/mserv', {
                 templateUrl: '/templates/management_services.html',
             })
+            .when('/page-edit/:page_id', {
+                templateUrl:'/templates/page-editor.html',
+                controller: 'PageEditor',
+                controllerAs: 'vm',
+                resolve: {
+                    resolve_pageid: function($route,$location){
+                        var page_id = $route.current.params.page_id;
+                        return page_id;
+                    }
+                }
+            })
             .when('/hr', {
                 templateUrl: '/templates/hr/hr-main.html',
                 controller: 'HRController',
@@ -91,7 +102,7 @@ angular
         }
     ];
 
-    console.log("here");
+    //console.log("here");
     vm.searchBox = function(eventCode){
         if(eventCode == 13){
             $location.path('/search/'+vm.searchQuery);

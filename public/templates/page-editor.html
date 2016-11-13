@@ -1,0 +1,54 @@
+<h1> {{vm.page_data[1]}} Page Admin</h1>
+
+<h3>Edit Page </h3>
+
+
+
+<form ng-submit="vm.updatePage()">
+  <div class="form-group">
+    <label for="pageHeading">Page Heading 1:</label>
+    <input type="text" ng-model="heading_01" class="form-control" id="ann-title" placeholder="Heading">
+  </div>
+  <div class="form-group">
+    <label for="pageHeading">Page Heading 2:</label>
+    <input type="text" ng-model="heading_02" class="form-control" id="ann-title" placeholder="Heading">
+  </div>
+  <div class="form-group">
+    <label for="pageBody">Page Body 1:</label>
+    <textarea class="form-control" ng-model="body_01"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="pageBody">Page Body 2:</label>
+    <textarea class="form-control" ng-model="body_02"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="pagePhoto">Photo Link 1:</label>
+    <input type="text" ng-model="img_01" class="form-control" id="ann-title" placeholder="Photo URL">
+  </div>
+  <div class="form-group">
+    <label for="pagePhoto">Photo Link 2:</label>
+    <input type="text" ng-model="img_02" class="form-control" id="ann-title" placeholder="Photo URL">
+  </div>
+  <div class="form-group">
+    <label for="pagePhoto">Photo Link 3:</label>
+    <input type="text" ng-model="img_03" class="form-control" id="ann-title" placeholder="Photo URL">
+  </div>
+  <div class="form-group">
+    <label for="pageVideo">Video Link 1:</label>
+    <input type="text" ng-model="video_01" class="form-control" id="ann-title" placeholder="Video URL">
+  </div>
+  <div class="form-group">
+    <label for="pageVideo">Video Link 2:</label>
+    <input type="text" ng-model="video_02" class="form-control" id="ann-title" placeholder="Video URL">
+  </div>
+  <div class="form-group">
+    <label for="pageHTML">Pure HTML:</label>
+    <textarea class="form-control" ng-model="pure_html"></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-default">Update</button>
+</form>
+
+
+</br>
+<a href="/#/hr">Back To HR Page</a>

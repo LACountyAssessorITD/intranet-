@@ -17,10 +17,6 @@ module.exports = function(app, mysql) {
 	// 						  );
 	//
 
-	/*This post request is not working properly given i still get a
-	* 500 error when the /intranet/public/dbaccess files are requested.
-	*/
-
 	function testConn(){
 		var connection = mysql.createConnection({
 		  host     : 'uscitp.com',
@@ -36,50 +32,81 @@ module.exports = function(app, mysql) {
 		res.sendfile(res);
 	});
 
-	app.post('/test_endpoint', function (req, res) {
+	app.post('/get_announcement', function (req, res) {
 		console.log("getting");
-		var dataReceived;
-		//connection.connect();
+		//store data from DB upon successful response.
+		var data_received;
+
+		//Open up the sql connection and send query.
 		var myConn = testConn();
 		myConn.query('SELECT * FROM Announcements', function(err, rows, fields) {
-		  if (err){
-			  console.log(err);
-			throw err;
-		  }
+			if (err){
+				console.log(err);
+				throw err;
+			}
 
-		 // console.log('The solution is: ', rows[0]);
-		 dataReceived = rows[0];
-		 rows.forEach(function(element){
-			 console.log(element);
-		 });
-		  myConn.end();
-		 res.send(JSON.stringify(dataReceived));
+			// Save the first result from query into received data.
+			data_received = rows[0];
+			//iterate through the data and print TEST PURPOSES ONLY
+			//  rows.forEach(function(element){
+			// 	 console.log(element);
+			//  });
+
+			//close the connection and send the data convert array to json.
+			myConn.end();
+			res.send(JSON.stringify(data_received));
 		});
 	});
 
 	app.post('/get_page', function (req, res){
-		console.log("retrieving page "+req.body.page_id);
-		var pageContentReceived;
-		var myConn = testConn();
+		//console.log("retrieving page "+req.body.page_id);
+		//the received data is in *req*. access by >req.body.{{variable name sent}}
+
+		var page_data_received; //store response data from DB here.
+		var myConn = testConn(); //open up the connection and send query
+
 		myConn.query('SELECT * FROM Pages WHERE id = '+req.body.page_id, function(err, rows, fields) {
-		//res.send("grateful for your service");
-		//myConn.query('SELECT * FROM ')
+			if (err){
+				console.log(err);
+				throw err;
+			}
 
+			// console.log('The solution is: ', rows[0]);
+			page_data_received = rows[0]; //store the first row from result.
+			//iterate through data, TEST PURPOSES ONLY
+			//    rows.forEach(function(element){
+			// 	   console.log(element);
+			//    });
 
-		if (err){
-			console.log(err);
-		  throw err;
+			//close connection and send back data as JSON
+			myConn.end();
+			res.send(JSON.stringify(page_data_received));
+		});
+	});
+
+	app.post('/update_page', function(req,res){
+		var myConn = testConn(); //opens up connection
+		var payload =
+		{
+			'img_01' : req.body.img_01,
+			'img_02' : req.body.img_02,
+			'img_03' : req.body.img_03,
+			'heading_01' : req.body.heading_01,
+			'heading_02' : req.body.heading_02,
+			'body_01' : req.body.body_01,
+			'body_02' : req.body.body_02,
+			'video_01' : req.body.video_01,
+			'video_02' : req.body.video_02,
+			'name' : req.body.name
 		}
-
-	   // console.log('The solution is: ', rows[0]);
-	   pageContentReceived = rows[0];
-	//    rows.forEach(function(element){
-	// 	   console.log(element);
-	//    });
-		myConn.end();
-	   res.send(JSON.stringify(pageContentReceived));
-   	});
-   });
+		myConn.query( 'UPDATE Pages SET ? WHERE id= '+req.body.page_id, payload, function(err,result){
+				  if(err){
+					  console.log(err);
+				  }else{
+					  console.log(result);
+				  }
+			  });
+	});
 
 	app.get('*', function(req, res) {
 		res.sendfile('./public/index.html');

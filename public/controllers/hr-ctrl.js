@@ -6,8 +6,12 @@ angular
 
         /*
         * vm.ann       -> announcement content
+                            [1]heading
+                            [2]content
+                            [3]date_created
         * vm.page_data -> page content
-                            [1]id
+                            [0]id
+                            [1]name
                             [2]img_01
                             [3]img_02
                             [4]img_03
@@ -17,14 +21,15 @@ angular
                             [8]body_02
                             [9]video_01
                             [10]video_02
-                            [11]name
         *
         *
         */
+
         vm.ann;
         vm.page_data;
-//        $http.post("dbaccess/hr-ann-get.php",{'division_name': 'Announcements'})
-        $http.post("/test_endpoint")
+
+
+        $http.post("/get_announcement")
         .success(function(data, status, headers, config){
               //console.log("status: "+status);
              //console.log("TEST:" +JSON.stringify(data));
@@ -37,27 +42,17 @@ angular
             // console.log("config: "+config);
         });
 
+        //Fetching the particular page. and send the page_id as payload data to
+        //the endpoint which in turn fetches from the DB with the page ID.
         var post_data = JSON.stringify(
             {
                 'page_id' : 1
             }
-        )
+        );
         $http.post('/get_page', post_data)
         .success(function(data){
             console.log(Object.values(data));
             vm.page_data = Object.values(data);
-        })
-
-
-        // $http.post("dbaccess/hr-page-get.php",{'division_name': 'Announcements'})
-        // .success(function(data, status, headers, config){
-        //     console.log(data);
-        //     vm.pageData=data;
-        //     console.log(vm.pageData);
-        //
-        //     $scope.dbBindHtml = $sce.trustAsHtml(vm.pageData[4]);
-        //
-        // });
-
+        });
 
     });
