@@ -2,11 +2,11 @@
 <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
 <form action="http://google.com">
     <a href="#/hr-add-ann" class="btn btn-primary btn-lg active" role="button">Create Announcement</a>
+    <a href="#/hr-ann-edit" class="btn btn-primary btn-lg active" role="button">Edit Current Announcement</a>
+    <a href="#/hr-page-edit" class="btn btn-primary btn-lg active" role="button">Edit Current Page</a>
 </form>
 </br>
-<form action="http://google.com">
-    <a href="#/hr-ann-edit" class="btn btn-primary btn-lg active" role="button">Edit Current Announcement</a>
-</form>
+
 
 <div class="announcement-panel">
 <h3> CURRENT ANNOUNCEMENT </h3>
@@ -15,20 +15,15 @@
     <h6 >{{vm.ann[3]}}</h6>
 </div>
 
-
 </br>
-<form action="http://google.com">
-    <a href="#/hr-page-edit" class="btn btn-primary btn-lg active" role="button">Edit Current Page</a>
-</form>
-</br>
-<div ng-if="vm.pageData !=NULL">
-    <h3>{{vm.pageData[0]}}</h3>
-    <p> {{vm.pageData[1]}}</p>
+<div ng-if="vm.page_data !=NULL">
+    <h3>{{vm.page_data[4]}}</h3>
+    <p> {{vm.page_data[6]}}</p>
     </br>
-    <img ng-src="{{vm.pageData[2]}}"></img>
+    <img ng-src="{{vm.pageData[1]}}"></img>
     </br>
     <video width="320" height="240" controls>
-        <source ng-src="{{vm.pageData[3]}}" type="video/mp4">
+        <source ng-src="{{vm.pageData[8]}}" type="video/mp4">
         Your browser does not support the video tag.
     </video>
     </br>

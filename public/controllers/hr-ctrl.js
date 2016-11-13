@@ -22,7 +22,7 @@ angular
         *
         */
         vm.ann;
-        vm.pageData;
+        vm.page_data;
 //        $http.post("dbaccess/hr-ann-get.php",{'division_name': 'Announcements'})
         $http.post("/test_endpoint")
         .success(function(data, status, headers, config){
@@ -44,7 +44,8 @@ angular
         )
         $http.post('/get_page', post_data)
         .success(function(data){
-            console.log(Object.values(data));
+            //console.log(Object.values(data));
+            vm.page_data = Object.values(data);
         })
 
 
