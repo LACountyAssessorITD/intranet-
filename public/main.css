@@ -52,7 +52,7 @@
 	display: block;
 	flex-basis: 80%;
 	flex-grow: 0;
-	height: 800px;
+	height: auto;
 }
 
 .link-element{

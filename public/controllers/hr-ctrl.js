@@ -7,17 +7,17 @@ angular
         /*
         * vm.ann       -> announcement content
         * vm.page_data -> page content
-                            [0]id
-                            [1]img_01
-                            [2]img_02
-                            [3]img_03
-                            [4]heading_01
-                            [5]heading_02
-                            [6]body_01
-                            [7]body_02
-                            [8]video_01
-                            [9]video_02
-                            [10]name
+                            [1]id
+                            [2]img_01
+                            [3]img_02
+                            [4]img_03
+                            [5]heading_01
+                            [6]heading_02
+                            [7]body_01
+                            [8]body_02
+                            [9]video_01
+                            [10]video_02
+                            [11]name
         *
         *
         */
@@ -44,7 +44,7 @@ angular
         )
         $http.post('/get_page', post_data)
         .success(function(data){
-            //console.log(Object.values(data));
+            console.log(Object.values(data));
             vm.page_data = Object.values(data);
         })
 
