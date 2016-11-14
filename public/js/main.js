@@ -1,15 +1,10 @@
 //name of module and array of dependent modules
 angular
     .module('intranet', ['ngRoute'])
-    .config(function($routeProvider) {
+    .config(function($routeProvider, $locationProvider) {
         $routeProvider
             .when('/',{
                 templateUrl: '/templates/index.html',
-                resolve: {
-                //    populateSidebar(1);
-                }
-                // controller: 'SongsSearchController',
-                // controllerAs: 'vm'
             })
             .when('/search/:query',{
                 templateUrl: '/templates/search.html',
@@ -42,9 +37,20 @@ angular
                     }
                 }
             })
+            .when('/announcement-edit/:division_id', {
+                templateUrl:'/templates/announcement-editor.html',
+                controller: 'AnnouncementEditor',
+                controllerAs: 'vm',
+                resolve: {
+                    resolve_division_id: function($route){
+                        var division_id = $route.current.params.division_id;
+                        return division_id;
+                    }
+                }
+            })
             .when('/hr', {
                 templateUrl: '/templates/hr/hr-main.html',
-                controller: 'HRController',
+                controller: 'PageController',
                 controllerAs: 'vm'
             })
             .when('/hr-add-ann', {
@@ -62,11 +68,9 @@ angular
                 controller: 'HREditController',
                 controllerAs: 'vm'
             });
-            // .when('/server/insertAnn',{
-            //     templateUrl: '/templates/insertAnn.php'
-            // });
+
             // use the HTML5 History API
-            //locationProvider.html5Mode(true);
+            $locationProvider.html5Mode(true);
     })
 .controller('HomeController', function($location) {
     var vm = this;
@@ -132,12 +136,3 @@ $(".link-element a").mouseover(function() {
 $(".link-element").mouseleave(function() {
     $(".link-element a").css("border","none");
 });
-
-// var example1 = $('.newsticker').newsTicker({
-//     row_height: 64,
-//     speed: 800,
-//     prevButton:  $('#prev-button'),
-//     nextButton:  $('#next-button'),
-//     stopButton:  $('#stop-button'),
-//     startButton: $('#start-button')
-// });

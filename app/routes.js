@@ -1,7 +1,5 @@
 module.exports = function(app, mysql) {
 //module.exports = function(app,passport) {
-
-
 	// server routes ===========================================================
 	// handle things like api calls
 	// authentication routes
@@ -27,10 +25,6 @@ module.exports = function(app, mysql) {
 
 		return connection
 	}
-	app.post('/dbaccess/hr-ann-get.php', function (req, res) {
-		console.log("posting");
-		res.sendfile(res);
-	});
 
 	app.post('/get_announcement', function (req, res) {
 		console.log("getting");
@@ -39,7 +33,9 @@ module.exports = function(app, mysql) {
 
 		//Open up the sql connection and send query.
 		var myConn = testConn();
-		myConn.query('SELECT * FROM Announcements', function(err, rows, fields) {
+		//WHERE id = '+req.body.division_id+'
+		myConn.query('SELECT * FROM Announcements WHERE division_id = '+ req.body.division_id+' ORDER BY date_created DESC LIMIT 1',
+		 function(err, rows, fields) {
 			if (err){
 				console.log(err);
 				throw err;
@@ -47,10 +43,10 @@ module.exports = function(app, mysql) {
 
 			// Save the first result from query into received data.
 			data_received = rows[0];
-			//iterate through the data and print TEST PURPOSES ONLY
-			//  rows.forEach(function(element){
-			// 	 console.log(element);
-			//  });
+		//	iterate through the data and print TEST PURPOSES ONLY
+			 rows.forEach(function(element){
+				 console.log(element);
+			 });
 
 			//close the connection and send the data convert array to json.
 			myConn.end();

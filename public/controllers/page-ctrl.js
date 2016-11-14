@@ -1,10 +1,13 @@
 angular
     .module('intranet')
-    .controller('HRController', function($scope,$http, $sce){
+    .controller('PageController', function($scope,$http, $sce){
         //vm is referring to "THIS" like java/c++ this.something.
         var vm = this;
 
         /*
+        Access elements in the corresponding JSON data by
+        #vm.ann.heading
+        #vm.page_data.video_01
         * vm.ann       -> announcement content
                             [1]heading
                             [2]content
@@ -28,15 +31,18 @@ angular
         vm.ann;
         vm.page_data;
 
-
-        $http.post("/get_announcement")
-        .success(function(data, status, headers, config){
+        var announcement_data = JSON.stringify(
+            {
+                'division_id' : 0
+            }
+        );
+        $http.post('/get_announcement', announcement_data)
+        .success(function(data){
               //console.log("status: "+status);
              //console.log("TEST:" +JSON.stringify(data));
-            console.log(data);
-            vm.ann=Object.values(data);
-
-            //console.log(vm.ann);
+            //console.log(data);
+            vm.ann=data;
+            console.log(vm.ann);
             // console.log("status: "+status);
             // console.log("headers: "+headers);
             // console.log("config: "+config);
@@ -51,8 +57,8 @@ angular
         );
         $http.post('/get_page', post_data)
         .success(function(data){
-            console.log(Object.values(data));
-            vm.page_data = Object.values(data);
+            //console.log(Object.values(data));
+            vm.page_data = data;
         });
 
     });

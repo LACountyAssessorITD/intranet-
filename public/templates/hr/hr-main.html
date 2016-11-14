@@ -1,26 +1,28 @@
 <h1> Human Resources</h1>
 <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
 <form action="http://google.com">
-    <a href="#/hr-add-ann" class="btn btn-primary btn-lg active" role="button">Create Announcement</a>
-    <a href="#/hr-ann-edit" class="btn btn-primary btn-lg active" role="button">Edit Current Announcement</a>
-    <a href="#/hr-page-edit" class="btn btn-primary btn-lg active" role="button">Edit Current Page</a>
+    <a href="/hr-add-ann" class="btn btn-primary btn-lg active" role="button">Create Announcement</a>
+    <a href="/announcement-edit/0" class="btn btn-primary btn-lg active" role="button">Edit Current Announcement</a>
+    <a href="/page-edit/1" class="btn btn-primary btn-lg active" role="button">Edit Current Page</a>
 </form>
 </br>
 
 
 <div class="announcement-panel">
-<h3> CURRENT ANNOUNCEMENT </h3>
-<h4 >{{vm.ann[1]}}</h4>
-<h5 >{{vm.ann[2]}}</h5>
-    <h6 >{{vm.ann[3]}}</h6>
+<h3>Announcements</h3>
+</br>
+<h4 >{{vm.ann.heading}}</h4>
+<h5 >{{vm.ann.content}}</h5>
+    <h6 >{{vm.ann.date_created}}</h6>
+</br>
 </div>
 
 </br>
 <div ng-if="vm.page_data !=NULL">
-    <h3>{{vm.page_data[5]}}</h3>
-    <p> {{vm.page_data[7]}}</p>
+    <h3>{{vm.page_data.heading_01}}</h3>
+    <p> {{vm.page_data.body_01}}</p>
     </br>
-    <img ng-src="{{vm.page_data[2]}}"></img>
+    <img ng-src="{{vm.page_data.img_01}}"></img>
     </br>
     <video width="320" height="240" controls>
         <source ng-src="{{}}" type="video/mp4">
