@@ -104,7 +104,7 @@ module.exports = function(app, mysql) {
 			  });
 	});
 
-	app.get('*', function(req, res) {
+	app.get('/', function(req, res) {
 		res.sendfile('./public/index.html');
 	});
 

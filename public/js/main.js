@@ -52,22 +52,22 @@ angular
                 templateUrl: '/templates/hr/hr-main.html',
                 controller: 'PageController',
                 controllerAs: 'vm'
-            })
-            .when('/hr-add-ann', {
-                templateUrl: '/templates/hr/announcements/hr-add.html',
-                controller: 'HRAddController',
-                controllerAs: 'vm'
-            })
-            .when('/hr-page-edit', {
-                templateUrl:'/templates/hr/hr-main-edit.html',
-                controller: 'HRPageEditController',
-                controllerAs: 'vm'
-            })
-            .when('/hr-ann-edit', {
-                templateUrl: '/templates/hr/announcements/ann-list.html',
-                controller: 'HREditController',
-                controllerAs: 'vm'
             });
+            // .when('/hr-add-ann', {
+            //     templateUrl: '/templates/hr/announcements/hr-add.html',
+            //     controller: 'HRAddController',
+            //     controllerAs: 'vm'
+            // })
+            // .when('/hr-page-edit', {
+            //     templateUrl:'/templates/hr/hr-main-edit.html',
+            //     controller: 'HRPageEditController',
+            //     controllerAs: 'vm'
+            // })
+            // .when('/hr-ann-edit', {
+            //     templateUrl: '/templates/hr/announcements/ann-list.html',
+            //     controller: 'HREditController',
+            //     controllerAs: 'vm'
+            // });
 
             // use the HTML5 History API
             $locationProvider.html5Mode(true);

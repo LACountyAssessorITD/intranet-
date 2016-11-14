@@ -50,27 +50,27 @@ angular
 
 
 
-    vm.update_page = function(){
-
-
-        var payload =
-        {
-            'img_01' : $scope.img_01,
-            'img_02' : $scope.img_02,
-            'img_03' : $scope.img_03,
-            'heading_01' : $scope.heading_01,
-            'heading_02' : $scope.heading_02,
-            'body_01' : $scope.body_01,
-            'body_02' : $scope.body_02,
-            'video_01' : $scope.video_01,
-            'video_02' : $scope.video_02,
-            'name' : $scope.name,
-            'id' : resolve_pageid
-        };
-
-        $http.post("dbaccess/hr-page-edit.php", payload)
-        .success(function(data,status,headers,config){
-
-        });
-    }
+    // vm.update_page = function(){
+    //
+    //
+    //     var payload =
+    //     {
+    //         'img_01' : $scope.img_01,
+    //         'img_02' : $scope.img_02,
+    //         'img_03' : $scope.img_03,
+    //         'heading_01' : $scope.heading_01,
+    //         'heading_02' : $scope.heading_02,
+    //         'body_01' : $scope.body_01,
+    //         'body_02' : $scope.body_02,
+    //         'video_01' : $scope.video_01,
+    //         'video_02' : $scope.video_02,
+    //         'name' : $scope.name,
+    //         'id' : resolve_pageid
+    //     };
+    //
+    //     // $http.post("dbaccess/hr-page-edit.php", payload)
+    //     // .success(function(data,status,headers,config){
+    //     //
+    //     // });
+    // }
 });
