@@ -48,11 +48,17 @@ angular
                     }
                 }
             })
+            .when('/alerts', {
+                templateUrl: '/templates/alerts.html',
+                controller: 'alertCtrl',
+                controllerAs: 'vm'
+            })
             .when('/hr', {
                 templateUrl: '/templates/hr/hr-main.html',
                 controller: 'PageController',
                 controllerAs: 'vm'
             });
+
             // .when('/hr-add-ann', {
             //     templateUrl: '/templates/hr/announcements/hr-add.html',
             //     controller: 'HRAddController',
