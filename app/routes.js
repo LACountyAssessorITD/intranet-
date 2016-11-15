@@ -108,4 +108,9 @@ module.exports = function(app, mysql) {
 		res.sendfile('./public/index.html');
 	});
 
+	app.post('/submit_alert', function (req, res) {
+		console.log(req.body.alert.subject);
+    res.end();
+	});
+
 };
