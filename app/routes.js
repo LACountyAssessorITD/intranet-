@@ -104,13 +104,15 @@ module.exports = function(app, mysql) {
 			  });
 	});
 
-	app.get('/', function(req, res) {
-		res.sendfile('./public/index.html');
-	});
-
 	app.post('/submit_alert', function (req, res) {
 		console.log(req.body.alert.subject);
     res.end();
 	});
+
+	app.get('/', function(req, res) {
+		res.sendfile('./public/index.html');
+	});
+
+
 
 };
