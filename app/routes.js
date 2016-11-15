@@ -105,11 +105,11 @@ module.exports = function(app, mysql) {
 	});
 
 	app.post('/submit_alert', function (req, res) {
-		console.log(req.body.alert.subject);
-    res.end();
+		console.log(req.body);
+		res.send(JSON.stringify({'good':200}));
 	});
 
-	app.get('/', function(req, res) {
+	app.get('/*', function(req, res) {
 		res.sendfile('./public/index.html');
 	});
 
