@@ -31,35 +31,86 @@
             <label for="pageHeading">Page Heading 2:</label>
             <input type="text" ng-model="vm.heading_02" class="form-control line-text" id="ann-title" placeholder="Heading">
         </div>
-
-        <div class="form-group">
-            <label for="pageBody">Page Body 2:</label>
-            <textarea class="form-control big-text" ng-model="vm.body_02"></textarea>
-        </div>
-
-        <div class="form-group">
-            <label for="pagePhoto">Photo Link 2:</label>
-            <input type="text" ng-model="vm.img_02" class="form-control line-text" id="ann-title" placeholder="Photo URL">
-        </div>
-        <div class="form-group">
-            <label for="pagePhoto">Photo Link 3:</label>
-            <input type="text" ng-model="vm.img_03" class="form-control line-text" id="ann-title" placeholder="Photo URL">
+        <div class="body-img-section">
+            <div class="form-group left-col-item">
+                <label for="pageBody">Page Body 2:</label>
+                <textarea class="form-control big-text" ng-model="vm.body_02"></textarea>
+            </div>
+            <div class="form-group right-col-item">
+                <label for="pagePhoto">Photo Link 2:</label>
+                <input type="text" ng-model="vm.img_02" class="form-control line-text" id="ann-title" placeholder="Photo URL">
+            </div>
         </div>
         <div class="form-group">
             <label for="pageVideo">Video Link 1:</label>
             <input type="text" ng-model="vm.video_01" class="form-control line-text" id="ann-title" placeholder="Video URL">
         </div>
         <div class="form-group">
-            <label for="pageVideo">Video Link 2:</label>
-            <input type="text" ng-model="vm.video_02" class="form-control line-text" id="ann-title" placeholder="Video URL">
-        </div>
-        <div class="form-group">
             <label for="pageStyle">Style:</label>
+            <!-- <select ng-init="vm.theme = selected" >
+                <option value="1">Theme 1</option>
+                <option value="2">Theme 2</option>
+            </select> -->
             <input type="text" ng-model="vm.theme" class="form-control line-text" id="ann-title" placeholder="Style num">
         </div>
         <button type="submit" class="btn btn-default">Update</button>
     </div>
 
+
+
+    <div ng-if="vm.editorVal == 2">
+        <div class="form-group">
+            <label for="pageURL">PAGEURL:</label>
+            <input type="text" ng-model="vm.url" class="form-control line-text" placeholder="sampleurl">
+        </div>
+        <div class="form-group">
+            <label for="Name">Name:</label>
+            <input type="text" ng-model="vm.name" class="form-control line-text" placeholder="display name">
+        </div>
+        <div class="form-group">
+            <label for="pageHeading">Page Heading 1:</label>
+            <input type="text" ng-model="vm.heading_01" class="form-control line-text" id="ann-title" placeholder="Heading">
+        </div>
+        <div class="body-img-section">
+            <div class="form-group left-col-item">
+                <label for="pageBody">Page Body 1:</label>
+                <textarea class="form-control big-text" ng-model="vm.body_01"></textarea>
+            </div>
+            <div class="form-group right-col-item">
+                <label for="pagePhoto">Photo Link 1:</label>
+                <input type="text" ng-model="vm.img_01" class="form-control line-text" id="ann-title" placeholder="Photo URL">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="pageHeading">Page Heading 2:</label>
+            <input type="text" ng-model="vm.heading_02" class="form-control line-text" id="ann-title" placeholder="Heading">
+        </div>
+
+        <div class="form-group">
+            <label for="pageVideo">Video Link 1:</label>
+            <input type="text" ng-model="vm.video_01" class="form-control line-text" id="ann-title" placeholder="Video URL">
+        </div>
+
+        <div class="form-group">
+            <label for="pageBody">Page Body 2:</label>
+            <textarea class="form-control big-text" ng-model="vm.body_02"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="pagePhoto">Photo Link 2:</label>
+            <input type="text" ng-model="vm.img_02" class="form-control line-text" id="ann-title" placeholder="Photo URL">
+        </div>
+
+
+        <div class="form-group">
+            <label for="pageStyle">Style:</label>
+            <!-- <select ng-init="vm.theme = selected" >
+                <option value="1">Theme 1</option>
+                <option value="2">Theme 2</option>
+            </select> -->
+            <input type="text" ng-model="vm.theme" class="form-control line-text" id="ann-title" placeholder="Style num">
+        </div>
+        <button type="submit" class="btn btn-default">Update</button>
+    </div>
 
 </form>
 

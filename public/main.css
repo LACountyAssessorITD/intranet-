@@ -113,6 +113,19 @@
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
 }
+.img-page{
+	display: block;
+	margin: auto;
+	/*auto height -> scales pretty*/
+	height: auto;
+	/*100% -> fits in div*/
+	max-width: 100%;
+}
+
+#calendar-one{
+	width:100%;
+	height:400px;
+}
 
 /*
 *
@@ -124,13 +137,26 @@
 .body-img-section {
 	display:inline-block;
 }
-.body-container-sect{
+.left-container-sect{
 	width:50%;
 	float:left;
 }
-.img-container-sect{
+.right-container-sect{
 	width:50%;
 	float: right;
+	padding-left: 10%;
+
+}
+
+/* THEME 01 EDITOR
+*/
+.left-col-item{
+	float:left;
+	width:50%;
+}
+.right-col-item{
+	float: right;
+	padding-left: 10%;
 }
 
 /*THEME 01 */
@@ -180,4 +206,20 @@
 	height: auto;
 	/*100% -> fits in div*/
 	max-width: 100%;
+}
+
+#t2_img_02{
+	display:inline-block;
+	max-width: 100%;
+}
+#t2_body_02{
+	display:inline-block;
+	max-width: 100%;
+	margin-right: 10%;
+}
+#t2_video_01{
+	display:block;
+	margin:auto;
+	width:100%;
+	height:auto;
 }

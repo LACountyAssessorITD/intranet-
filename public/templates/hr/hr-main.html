@@ -32,10 +32,10 @@
         <h3>{{vm.page_data.heading_02}}</h3>
         </br>
         <div class="body-img-section">
-                <div class="body-container-sect">
+                <div class="left-container-sect">
                     <p ng-if="vm.page_data.body_02 != null"id="t1_body_02"> {{vm.page_data.body_02}}</p>
                 </div>
-                <div class="img-container-sect">
+                <div class="right-container-sect">
                     <img ng-if="vm.page_data.body_02" id="t1_img_02" ng-src="{{vm.page_data.img_02}}"></img>
                 </div>
             <div style="clear: both;"></div>
@@ -48,6 +48,8 @@
             Your browser does not support the video tag.
         </video>
         </br>
+        <iframe id="calendar-one" class="calendar-frame" ng-src="{{vm.cal | trusted}}"></iframe>
+
     </div>
 
 
@@ -55,15 +57,29 @@
 
     <div ng-if="vm.page_data.theme == 2">
         <h3 id="t2_heading_01">{{vm.page_data.heading_01}}</h3>
-        <p id="t2_body_01"> {{vm.page_data.body_01}}</p>
-        </br>
-        <img id="t2_img_01" ng-src="{{vm.page_data.img_01}}"></img>
-        </br>
+        <div class="body-img-section">
+            <div class="left-container-sect">
+                <img id="t2_img_01" ng-src="{{vm.page_data.img_01}}"></img>
+            </div>
+            <div class="right-container-sect">
+                <p id="t2_body_01"> {{vm.page_data.body_01}}</p>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+        <h3 id="t2_heading_02">{{vm.page_data.heading_02}}</h3>
+    </br>
+    </br>
         <video ng-if="vm.page_data.video_01 != null" id="t2_video_01" width="320" height="240" controls>
-            <source ng-src="{{vm.page_data.video_01}}" type="video/mp4">
+            <source ng-src="{{vm.page_data.video_01 | trusted}}" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         </br>
+        <p id="t2_body_02"> {{vm.page_data.body_02}}</p>
+        <img id="t2_img_02" ng-src="{{vm.page_data.img_02}}"></img>
+
+        <iframe id="calendar-one" class="calendar-frame" src="{{vm.cal}}"></iframe>
+
+
     </div>
 
 

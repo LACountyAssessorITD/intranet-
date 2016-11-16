@@ -14,28 +14,31 @@ angular
         );
         $http.post('/get_announcement', announcement_data)
         .success(function(data){
-              //console.log("status: "+status);
-             //console.log("TEST:" +JSON.stringify(data));
-            //console.log(data);
             vm.ann=data;
             console.log(vm.ann);
-            // console.log("status: "+status);
-            // console.log("headers: "+headers);
-            // console.log("config: "+config);
         });
-        //
-        //
-        // //SUBMIT POST REQUEST to UPDATE an announcement into the database
-        // vm.submitUpdate = function(){
-        //     $http.post("dbaccess/hr-ann-update.php",{'ann_idx_id':vm.ann[0],'title_ann': $scope.annTitle, 'content_ann': $scope.announceContent})
-        //     .success(function(data, status, headers, config){
-        //         console.log("data: "+data);
-        //         console.log("status: "+status);
-        //         console.log("headers: "+headers);
-        //         console.log("config: "+config);
-        //     });
-        // }
-        //
+
+
+        //SUBMIT POST REQUEST to UPDATE an announcement into the database
+        vm.submitUpdate = function(){
+            var payload = JSON.stringify(
+                {
+                    'heading' : vm.ann.heading,
+                    'content' : vm.ann.content,
+                    'division_id' : vm.ann.division_id,
+                    'id': vm.ann.id
+                }
+            );
+            console.log(payload);
+            $http.post('/update_announcement',payload)
+            .success(function(data, status, headers, config){
+                console.log("data: "+data);
+                console.log("status: "+status);
+                console.log("headers: "+headers);
+                console.log("config: "+config);
+            });
+        }
+
         // vm.submitDeletion = function(){
         //     $http.post("dbaccess/hr-ann-delete.php",{'ann_idx_id':vm.ann[0]})
         //     .success(function(data, status, headers, config){

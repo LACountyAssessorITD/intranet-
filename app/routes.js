@@ -22,7 +22,6 @@ module.exports = function(app, mysql, transporter) {
 		  password : 'uscitp2016',
 		  database : 'tastleon_intranet'
 		});
-
 		return connection
 	}
 
@@ -67,6 +66,7 @@ module.exports = function(app, mysql, transporter) {
 			res.send(JSON.stringify(page_data_received));
 		});
 	});
+
 	app.post('/get_page_from_name', function (req, res){
 		/*
 		*console.log("retrieving page "+req.body.page_id);
@@ -119,6 +119,28 @@ module.exports = function(app, mysql, transporter) {
 		}
 
 		var sql = 'UPDATE Pages SET ? WHERE id= ?'
+		var inserts = [payload, req.body.id];
+		sql = mysql.format(sql, inserts);
+		console.log(sql);
+		myConn.query(sql , function(err,result){
+				  if(err){
+					  console.log(err);
+				  }else{
+					  console.log(result);
+				  }
+			  });
+	});
+
+	app.post('/update_announcement', function(req,res){
+		//console.log("test"+req.body.theme);
+		var myConn = testConn(); //opens up connection
+		var payload =
+		{
+			'heading' : req.body.heading,
+			'content' : req.body.content
+		}
+
+		var sql = 'UPDATE Announcements SET ? WHERE id= ?'
 		var inserts = [payload, req.body.id];
 		sql = mysql.format(sql, inserts);
 		console.log(sql);

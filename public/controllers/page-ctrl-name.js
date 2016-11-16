@@ -63,6 +63,7 @@ angular
             $http.post('/get_announcement', announcement_data)
             .success(function(data){
                 vm.ann=data;
+                vm.ann.date_created = new Date(vm.ann.date_created).toDateString();
                 //console.log(vm.ann);
             });
 
