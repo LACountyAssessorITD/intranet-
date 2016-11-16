@@ -1,4 +1,4 @@
-module.exports = function(app, mysql, transporter) {
+module.exports = function(app, mysql, passport, transporter) {
 //module.exports = function(app,passport) {
 	// server routes ===========================================================
 	// handle things like api calls
@@ -6,14 +6,28 @@ module.exports = function(app, mysql, transporter) {
 
 	// frontend routes =========================================================
 	// route to handle all angular requests
+	function isAuthenticated(req, res, next) {
 
+		// do any checks you want to in here
+
+		// CHECK THE USER STORED IN SESSION FOR A CUSTOM VARIABLE
+		// you can do this however you want with whatever variables you set up
+		if (true)
+		return next();
+
+		// IF A USER ISN'T LOGGED IN, THEN REDIRECT THEM SOMEWHERE
+		res.redirect('/');
+	}
+	// app.get('/', function(req, res) {
+    // 	res.sendFile(path.join(__dirname + '/index.html'));
+	// });
 	// app.post('/login',
- 	//passport.authenticate('WindowsAuthentication', {
-    //                               successRedirect: '/ipassed',
-    //                               failureRedirect: '/failure',
-    //                               failureFlash:    true })
-	// 						  );
-	//
+ 	passport.authenticate('WindowsAuthentication', {
+                                  successRedirect: '/',
+                                  failureRedirect: '/login',
+                                  failureFlash:    true }
+							  );
+
 
 	function testConn(){
 		var connection = mysql.createConnection({
@@ -176,7 +190,7 @@ module.exports = function(app, mysql, transporter) {
 		res.send(JSON.stringify({'good':200}));
 	});
 
-	app.get('/*', function(req, res) {
+	app.get('/*', isAuthenticated, function(req, res) {
 		res.sendfile('./public/index.html');
 	});
 

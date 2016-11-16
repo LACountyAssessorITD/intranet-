@@ -20,27 +20,27 @@ app.use(bodyParser.urlencoded({ extended: true })); // parse application/x-www-f
 app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(express.static(__dirname + '/public')); // set the static files location /public/img will be /img for users
 
-// var passport = require('passport');
-// var WindowsStrategy = require('passport-windowsauth');
-//
-// passport.use(new WindowsStrategy({
-//   ldap: {
-//     url:             'ldap://!',
-//     base:            '!',
-//     bindDN:          '!@!',
-//     bindCredentials: '!!'
-//   },
-//   integrated:      false
-// }, function(profile, done){
-//   console.log(profile);
-//   done(profile);
-//   // User.findOrCreate({ waId: profile.id }, function (err, user) {
-// 	//   console.log(user);
-//     //  done(err, profile);
-//   //
-//   // });
-// }));
-//
+var passport = require('passport');
+var WindowsStrategy = require('passport-windowsauth');
+
+passport.use(new WindowsStrategy({
+ldap: {
+    url:             'ldap://laassessor.co.la.ca.us',
+    base:            'OU=ASSR,DC=laassessor,DC=co,DC=la,DC=ca,DC=us',
+    bindDN:          'bsg_ldap@laassessor',
+    bindCredentials: 'SharePoint123!'
+  },
+  integrated:      false
+}, function(profile, done){
+  console.log(profile);
+  done(profile);
+  // User.findOrCreate({ waId: profile.id }, function (err, user) {
+	//   console.log(user);
+    //  done(err, profile);
+  //
+  // });
+}));
+
 var connection = mysql.createConnection({
   host     : 'uscitp.com',
   user     : 'tastleonar',
@@ -62,7 +62,7 @@ var transporter = nodemailer.createTransport({
 // routes ==================================================
 //require('./app/routes')(app,passport); // pass our application into our routes
 
-require('./app/routes')(app, mysql, transporter); // pass our application into our routes
+require('./app/routes')(app, mysql,passport, transporter); // pass our application into our routes
 
 
 // start app ===============================================
