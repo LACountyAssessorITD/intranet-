@@ -117,6 +117,7 @@ module.exports = function(app, mysql) {
 	});
 
 	app.post('/update_page', function(req,res){
+		console.log("test"+req.body.theme);
 		var myConn = testConn(); //opens up connection
 		var payload =
 		{
@@ -129,7 +130,9 @@ module.exports = function(app, mysql) {
 			'body_02' : req.body.body_02,
 			'video_01' : req.body.video_01,
 			'video_02' : req.body.video_02,
-			'name' : req.body.name
+			'name' : req.body.name,
+			'theme': req.body.theme,
+			'url' : req.body.url
 		}
 		myConn.query( 'UPDATE Pages SET ? WHERE id= '+req.body.page_id, payload, function(err,result){
 				  if(err){

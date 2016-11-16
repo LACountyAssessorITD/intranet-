@@ -3,6 +3,7 @@ angular
 .controller('PageEditor', function($scope,$http,resolve_pageid){
     console.log("page id:"+resolve_pageid);
     var vm = this;
+
     /*Upon page editor load:
     * 1.) Get the page and all the data needed to fill edit boxes
     * 2.) When data is filled in , have separate function to update
@@ -38,41 +39,45 @@ angular
     .success(function(data){
         console.log(Object.values(data));
         vm.page_data = Object.values(data);
-        $scope.heading_01 = vm.page_data[5];
-        $scope.heading_02 = vm.page_data[6];
-        $scope.body_01 = vm.page_data[7];
-        $scope.body_02 = vm.page_data[8];
-        $scope.img_01 = vm.page_data[2];
-        $scope.img_02 = vm.page_data[3];
-        $scope.img_03 = vm.page_data[4];
-        $scope.video_01 = vm.page_data[9];
-        $scope.video_02 = vm.page_data[10];
-        $scope.style = vm.page_data[11];
+        vm.heading_01 = vm.page_data[5];
+        vm.heading_02 = vm.page_data[6];
+        vm.body_01 = vm.page_data[7];
+        vm.body_02 = vm.page_data[8];
+        vm.img_01 = vm.page_data[2];
+        vm.img_02 = vm.page_data[3];
+        vm.img_03 = vm.page_data[4];
+        vm.video_01 = vm.page_data[9];
+        vm.video_02 = vm.page_data[10];
+        vm.theme = vm.page_data[11];
+        vm.editorVal= vm.page_data[11];
+        vm.url = vm.page_data[12];
     });
 
 
 
-    // vm.update_page = function(){
-    //
-    //
-    //     var payload =
-    //     {
-    //         'img_01' : $scope.img_01,
-    //         'img_02' : $scope.img_02,
-    //         'img_03' : $scope.img_03,
-    //         'heading_01' : $scope.heading_01,
-    //         'heading_02' : $scope.heading_02,
-    //         'body_01' : $scope.body_01,
-    //         'body_02' : $scope.body_02,
-    //         'video_01' : $scope.video_01,
-    //         'video_02' : $scope.video_02,
-    //         'name' : $scope.name,
-    //         'id' : resolve_pageid
-    //     };
-    //
-    //     // $http.post("dbaccess/hr-page-edit.php", payload)
-    //     // .success(function(data,status,headers,config){
-    //     //
-    //     // });
-    // }
+    vm.update_page = function(){
+
+
+        var payload =
+        {
+            'img_01' : vm.img_01,
+            'img_02' : vm.img_02,
+            'img_03' : vm.img_03,
+            'heading_01' : vm.heading_01,
+            'heading_02' : vm.heading_02,
+            'body_01' : vm.body_01,
+            'body_02' : vm.body_02,
+            'video_01' : vm.video_01,
+            'video_02' : vm.video_02,
+            'theme'  : vm.theme,
+            'url'  :vm.url,
+            'name' : vm.name,
+            'id' : resolve_pageid
+        };
+        console.log(payload);
+        $http.post('/update_page', payload)
+        .success(function(data,status,headers,config){
+            console.log("SUCCESS");
+        });
+    }
 });
