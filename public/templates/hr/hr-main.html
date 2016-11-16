@@ -1,3 +1,4 @@
+
 <h1> Human Resources</h1>
 <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
 <form action="http://google.com">
@@ -18,17 +19,53 @@
 </div>
 
 </br>
+
+<!-- Page content  -->
+<!-- Displayed if vm.page_data is available, and ng-if to display correct theme (vm.page_data.theme)  -->
 <div ng-if="vm.page_data !=NULL">
-    <h3>{{vm.page_data.heading_01}}</h3>
-    <p> {{vm.page_data.body_01}}</p>
+    <div ng-if="vm.page_data.theme == 1">
+        <h3 id="t1_heading_01">{{vm.page_data.heading_01}}</h3>
+        <p id="t1_body_01"> {{vm.page_data.body_01}}</p>
+        </br>
+        <img id="t1_img_01" ng-src="{{vm.page_data.img_01}}"></img>
+        </br>
+        <h3>{{vm.page_data.heading_02}}</h3>
+        </br>
+        <div class="body-img-section">
+                <div class="body-container-sect">
+                    <p ng-if="vm.page_data.body_02 != null"id="t1_body_02"> {{vm.page_data.body_02}}</p>
+                </div>
+                <div class="img-container-sect">
+                    <img ng-if="vm.page_data.body_02" id="t1_img_02" ng-src="{{vm.page_data.img_02}}"></img>
+                </div>
+            <div style="clear: both;"></div>
+        </div>
     </br>
-    <img ng-src="{{vm.page_data.img_01}}"></img>
-    </br>
-    <video width="320" height="240" controls>
-        <source ng-src="{{}}" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    </br>
-    <div ng-bind-html="dbBindHtml">
+        <!-- <p ng-if="vm.page_data.body_02 != null"id="t1_body_02"> {{vm.page_data.body_02}}</p> -->
+
+        <video ng-if="vm.page_data.video_01 != null" id="t1_video_01" controls>
+            <source ng-src="{{vm.page_data.video_01 | trusted}}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        </br>
     </div>
+
+
+
+
+    <div ng-if="vm.page_data.theme == 2">
+        <h3 id="t2_heading_01">{{vm.page_data.heading_01}}</h3>
+        <p id="t2_body_01"> {{vm.page_data.body_01}}</p>
+        </br>
+        <img id="t2_img_01" ng-src="{{vm.page_data.img_01}}"></img>
+        </br>
+        <video ng-if="vm.page_data.video_01 != null" id="t2_video_01" width="320" height="240" controls>
+            <source ng-src="{{vm.page_data.video_01}}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        </br>
+    </div>
+
+
+
 </div>

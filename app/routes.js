@@ -79,6 +79,42 @@ module.exports = function(app, mysql) {
 			res.send(JSON.stringify(page_data_received));
 		});
 	});
+	app.post('/get_page_from_name', function (req, res){
+		//console.log("retrieving page "+req.body.page_id);
+		//the received data is in *req*. access by >req.body.{{variable name sent}}
+		//receive the name.
+
+		//query the database for the first result of page
+			//this means that each page name has to be unique as well. *** TODO
+		//given the first result from the query , we get entire page's data.
+		//we send this data back as the response.
+
+
+		var page_data_received; //store response data from DB here.
+		var myConn = testConn(); //open up the connection and send query
+
+		var payload =
+		{
+			'url' : req.body.page_name
+		}
+		myConn.query('SELECT * FROM Pages WHERE ? LIMIT 1',payload, function(err, rows, fields) {
+			if (err){
+				console.log(err);
+				throw err;
+			}
+
+			// console.log('The solution is: ', rows[0]);
+			page_data_received = rows[0]; //store the first row from result.
+			//iterate through data, TEST PURPOSES ONLY
+			//    rows.forEach(function(element){
+			// 	   console.log(element);
+			//    });
+
+			//close connection and send back data as JSON
+			myConn.end();
+			res.send(JSON.stringify(page_data_received));
+		});
+	});
 
 	app.post('/update_page', function(req,res){
 		var myConn = testConn(); //opens up connection

@@ -1,5 +1,5 @@
 //name of module and array of dependent modules
-angular
+var app =angular
     .module('intranet', ['ngRoute'])
     .config(function($routeProvider, $locationProvider) {
         $routeProvider
@@ -56,14 +56,46 @@ angular
             .when('/hr', {
                 templateUrl: '/templates/hr/hr-main.html',
                 controller: 'PageController',
-                controllerAs: 'vm'
-            });
+                controllerAs: 'vm',
+            })
+            .when('/:name', {
+                templateUrl: '/templates/hr/hr-main.html',
+                controller: 'PageControllerName',
+                controllerAs: 'vm',
+                resolve: {
+                    resolve_page_name: function($route, $http,$location, $q){
+                        console.log($route.current.params.name);
+                        //return $route.current.params.name;
+                        //Fetching the particular page. and send the page_id as payload data to
+                        //the endpoint which in turn fetches from the DB with the page ID.
+                        // var initInjector = angular.injector(['ng']);
+                        // var $http = initInjector.get('$http');
+                        var post_data = JSON.stringify(
+                            {
+                                'page_name' : $route.current.params.name
+                            }
+                        );
+                        return $http.post('/get_page_from_name', post_data)
+                        .then(function(data){
+                            console.log(Object.values(data));
+                            if(data[0] == null){
+                                console.log("FUK");
+                                $location.path( "/" );
+                                $route.reload();
+                                return -1;
 
-            // .when('/hr-add-ann', {
-            //     templateUrl: '/templates/hr/announcements/hr-add.html',
-            //     controller: 'HRAddController',
-            //     controllerAs: 'vm'
-            // })
+                            }else{
+                                return Object.values(data);
+                            }
+
+                        });
+
+                        // var division_id = $route.current.params.division_id;
+
+                    }
+
+                }
+            });
             // .when('/hr-page-edit', {
             //     templateUrl:'/templates/hr/hr-main-edit.html',
             //     controller: 'HRPageEditController',
@@ -80,6 +112,8 @@ angular
     })
 .controller('HomeController', function($location) {
     var vm = this;
+    console.log("CHEWEY WE'RE HOME");
+
     vm.sideBar = [];
     vm.sidebarHR = [
         {
@@ -133,6 +167,13 @@ angular
         }
     }
 });
+
+app.filter('trusted', ['$sce', function ($sce) {
+    return function(url) {
+        return $sce.trustAsResourceUrl(url);
+    };
+}]);
+
 // Additional JS for the Meu
 $(".link-element a").mouseover(function() {
     //$(".link-element").css("border","none");

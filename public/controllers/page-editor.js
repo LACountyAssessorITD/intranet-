@@ -24,6 +24,7 @@ angular
                         [8]body_02
                         [9]video_01
                         [10]video_02
+                        [11]theme
     *
     *
     */
@@ -46,6 +47,7 @@ angular
         $scope.img_03 = vm.page_data[4];
         $scope.video_01 = vm.page_data[9];
         $scope.video_02 = vm.page_data[10];
+        $scope.style = vm.page_data[11];
     });
 
 

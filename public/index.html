@@ -38,7 +38,7 @@ alias for this search controller -->
 				<div class="dropdown-content">
 					<a href="/hr">Human Resources</a>
     				<a href="">Generic Home</a>
-    				<a href="">Management Services</a>
+    				<a href="/">Management Services</a>
  				</div>
 			</div>
 
@@ -49,12 +49,6 @@ alias for this search controller -->
 	</header>
 
 <div class="main-container">
-	<div class="sidebar-menu">
-		<h4> Sublinks </h4>
-		<div ng-repeat="sublink in vm.sidebar">
-			<a href="{{sublink.linkUrl}}">{{sublink.linkTitle}}</a>
-		</div>
-	</div>
 	<main class="main-content">
 		<div ng-view> </div>
 	</main>
@@ -63,15 +57,16 @@ alias for this search controller -->
 </div>
 
 <!-- JS -->
-<script src="libs/angular/angular.min.js"></script>
-<script src="libs/angular-route/angular-route.min.js"></script>
-<script src="libs/jquery/dist/jquery.min.js"></script>
-<script src="js/main.js"></script>
-<script src="controllers/search-ctrl.js"></script>
-<script src="controllers/page-ctrl.js"></script>
-<script src="controllers/announcement-editor.js"></script>
-<script src="controllers/page-editor.js"></script>
-<script src="controllers/alert-ctrl.js"></script>
+<script src="/libs/angular/angular.min.js"></script>
+<script src="/libs/angular-route/angular-route.min.js"></script>
+<script src="/libs/jquery/dist/jquery.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/controllers/search-ctrl.js"></script>
+<script src="/controllers/page-ctrl.js"></script>
+<script src="/controllers/announcement-editor.js"></script>
+<script src="/controllers/page-editor.js"></script>
+<script src="/controllers/alert-ctrl.js"></script>
+<script src="/controllers/page-ctrl-name.js"></script>
 
 
 

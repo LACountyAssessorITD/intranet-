@@ -1,6 +1,6 @@
 angular
     .module('intranet')
-    .controller('PageController', function($location,$scope,$http, $sce){
+    .controller('PageControllerName', function($location,$scope,$http, $sce,$q, resolve_page_name){
         //vm is referring to "THIS" like java/c++ this.something.
         var vm = this;
         //console.log("VAL:"+resolve_page_name);
@@ -32,9 +32,19 @@ angular
         *
         *
         */
+
+        $q.when(resolve_page_name).then(
+            function (result){
+                if(result == -1){
+                    console.log("u fuked up");
+                }
+        });
+        if(resolve_page_name.length == 0 ){
+            //no page exists at that name, so now we need to redirect back to the
+            $location.path( "/" );
+        }
         vm.ann;
         vm.page_data;
-        vm.sidebar = {'apple':'dog'};
 
         var announcement_data = JSON.stringify(
             {
@@ -53,17 +63,17 @@ angular
             // console.log("config: "+config);
         });
 
-        //Fetching the particular page. and send the page_id as payload data to
-        //the endpoint which in turn fetches from the DB with the page ID.
-        var post_data = JSON.stringify(
-            {
-                'page_id' : 1
-            }
-        );
-        $http.post('/get_page', post_data)
-        .success(function(data){
-            //console.log(Object.values(data));
-            vm.page_data = data;
-        });
+        // //Fetching the particular page. and send the page_id as payload data to
+        // //the endpoint which in turn fetches from the DB with the page ID.
+        // var post_data = JSON.stringify(
+        //     {
+        //         'page_id' : 1
+        //     }
+        // );
+        // $http.post('/get_page', post_data)
+        // .success(function(data){
+        //     //console.log(Object.values(data));
+        //     vm.page_data = data;
+        // });
 
     });
