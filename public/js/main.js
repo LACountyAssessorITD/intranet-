@@ -48,15 +48,15 @@ var app =angular
                     }
                 }
             })
-            .when('/alerts', {
-                templateUrl: '/templates/alerts.html',
-                controller: 'alertCtrl',
-                controllerAs: 'vm'
-            })
             .when('/hr', {
                 templateUrl: '/templates/hr/hr-main.html',
                 controller: 'PageController',
                 controllerAs: 'vm',
+            })
+            .when('/alerts', {
+                templateUrl: '/templates/alerts.html',
+                controller: 'alertCtrl',
+                controllerAs: 'vm'
             })
             .when('/:name', {
                 templateUrl: '/templates/hr/hr-main.html',
@@ -83,30 +83,14 @@ var app =angular
                                 $location.path( "/" );
                                 $route.reload();
                                 return -1;
-
                             }else{
                                 return Object.values(data);
                             }
-
                         });
-
                         // var division_id = $route.current.params.division_id;
-
                     }
-
                 }
             });
-            // .when('/hr-page-edit', {
-            //     templateUrl:'/templates/hr/hr-main-edit.html',
-            //     controller: 'HRPageEditController',
-            //     controllerAs: 'vm'
-            // })
-            // .when('/hr-ann-edit', {
-            //     templateUrl: '/templates/hr/announcements/ann-list.html',
-            //     controller: 'HREditController',
-            //     controllerAs: 'vm'
-            // });
-
             // use the HTML5 History API
             $locationProvider.html5Mode(true);
     })
