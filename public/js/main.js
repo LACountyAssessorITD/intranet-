@@ -83,6 +83,19 @@ var app =angular
                                 $location.path( "/" );
                                 $route.reload();
                                 return -1;
+<<<<<<< Updated upstream
+=======
+=======
+                controllerAs: 'vm'
+            })
+            .when('/alerts', {
+                templateUrl: '/templates/alerts.html',
+                controller: 'alertCtrl',
+                controllerAs: 'vm'
+            });
+>>>>>>> Nick
+
+>>>>>>> Stashed changes
                             }else{
                                 return Object.values(data);
                             }
