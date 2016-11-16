@@ -32,48 +32,53 @@ angular
         *
         *
         */
-
+        // .then(function(data){
+        //     console.log(Object.values(data));
+        //     if(data[0] == ""){
+        //         console.log("FUK");
+        //         $location.path( "/" );
+        //         $route.reload();
+        //         return -1;
+        //     }else{
+        //         console.log('IN THEN');
+        //         return data[0];
+        //     }
         $q.when(resolve_page_name).then(
             function (result){
-                if(result == -1){
+            //    console.log("result:"+result);
+                if(result == null){
                     console.log("u fuked up");
+                }else{
+                    vm.load_page();
                 }
         });
-        if(resolve_page_name.length == 0 ){
-            //no page exists at that name, so now we need to redirect back to the
-            $location.path( "/" );
+        vm.load_page = function (){
+            vm.ann;
+            vm.page_data = resolve_page_name.data;
+            var announcement_data = JSON.stringify(
+                {
+                    'division_id' : 0
+                }
+            );
+            $http.post('/get_announcement', announcement_data)
+            .success(function(data){
+                vm.ann=data;
+                //console.log(vm.ann);
+            });
+
+            //Fetching the particular page. and send the page_id as payload data to
+            //the endpoint which in turn fetches from the DB with the page ID.
+            var post_data = JSON.stringify(
+                {
+                    'page_id' : vm.page_data.id
+                }
+            );
+            $http.post('/get_page', post_data)
+            .success(function(data){
+                //console.log(Object.values(data));
+                vm.page_data = data;
+            });
         }
-        vm.ann;
-        vm.page_data;
 
-        var announcement_data = JSON.stringify(
-            {
-                'division_id' : 0
-            }
-        );
-        $http.post('/get_announcement', announcement_data)
-        .success(function(data){
-              //console.log("status: "+status);
-             //console.log("TEST:" +JSON.stringify(data));
-            //console.log(data);
-            vm.ann=data;
-            console.log(vm.ann);
-            // console.log("status: "+status);
-            // console.log("headers: "+headers);
-            // console.log("config: "+config);
-        });
-
-        // //Fetching the particular page. and send the page_id as payload data to
-        // //the endpoint which in turn fetches from the DB with the page ID.
-        // var post_data = JSON.stringify(
-        //     {
-        //         'page_id' : 1
-        //     }
-        // );
-        // $http.post('/get_page', post_data)
-        // .success(function(data){
-        //     //console.log(Object.values(data));
-        //     vm.page_data = data;
-        // });
 
     });

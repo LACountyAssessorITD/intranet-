@@ -39,25 +39,23 @@ angular
     .success(function(data){
         console.log(Object.values(data));
         vm.page_data = Object.values(data);
+        vm.name = vm.page_data[1];
+        vm.img_01 = vm.page_data[2];
+        vm.img_02 = vm.page_data[3];
+        vm.img_03 = vm.page_data[4];
         vm.heading_01 = vm.page_data[5];
         vm.heading_02 = vm.page_data[6];
         vm.body_01 = vm.page_data[7];
         vm.body_02 = vm.page_data[8];
-        vm.img_01 = vm.page_data[2];
-        vm.img_02 = vm.page_data[3];
-        vm.img_03 = vm.page_data[4];
         vm.video_01 = vm.page_data[9];
         vm.video_02 = vm.page_data[10];
         vm.theme = vm.page_data[11];
         vm.editorVal= vm.page_data[11];
         vm.url = vm.page_data[12];
+
     });
 
-
-
     vm.update_page = function(){
-
-
         var payload =
         {
             'img_01' : vm.img_01,
@@ -72,9 +70,9 @@ angular
             'theme'  : vm.theme,
             'url'  :vm.url,
             'name' : vm.name,
-            'id' : resolve_pageid
+            'id' : vm.page_data[0]
         };
-        console.log(payload);
+        //console.log(payload);
         $http.post('/update_page', payload)
         .success(function(data,status,headers,config){
             console.log("SUCCESS");

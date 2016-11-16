@@ -75,18 +75,9 @@ var app =angular
                                 'page_name' : $route.current.params.name
                             }
                         );
-                        return $http.post('/get_page_from_name', post_data)
-                        .then(function(data){
-                            console.log(Object.values(data));
-                            if(data[0] == null){
-                                console.log("FUK");
-                                $location.path( "/" );
-                                $route.reload();
-                                return -1;
-                            }else{
-                                return Object.values(data);
-                            }
-                        });
+                        return $http.post('/get_page_from_name', post_data);
+
+
                         // var division_id = $route.current.params.division_id;
                     }
                 }
