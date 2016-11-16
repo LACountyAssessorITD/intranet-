@@ -1,4 +1,4 @@
-module.exports = function(app, mysql) {
+module.exports = function(app, mysql, transporter) {
 //module.exports = function(app,passport) {
 	// server routes ===========================================================
 	// handle things like api calls
@@ -105,7 +105,26 @@ module.exports = function(app, mysql) {
 	});
 
 	app.post('/submit_alert', function (req, res) {
-		console.log(req.body);
+		console.log(req.body.to);
+		console.log(req.body.subject);
+		console.log(req.body.body);
+
+		// setup e-mail data with unicode symbols
+		var mailOptions = {
+		    sender: 'nroubal@usc.edu', // sender address
+		    to: req.body.to, // list of receivers
+		    subject: req.body.subject, // Subject line
+		    text: req.body.body, // plaintext body
+		};
+
+		// send mail with defined transport object
+		transporter.sendMail(mailOptions, function(error, info) {
+		    if(error) {
+		        return console.log(error);
+		    }
+		    console.log('Message sent: ' + info.response);
+		});
+
 		res.send(JSON.stringify({'good':200}));
 	});
 

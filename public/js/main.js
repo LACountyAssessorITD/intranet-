@@ -48,11 +48,6 @@ angular
                     }
                 }
             })
-            .when('/alerts', {
-                templateUrl: '/templates/alerts.html',
-                controller: 'alertCtrl',
-                controllerAs: 'vm'
-            })
             .when('/hr', {
                 templateUrl: '/templates/hr/hr-main.html',
                 controller: 'PageController',

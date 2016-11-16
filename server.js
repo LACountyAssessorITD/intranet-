@@ -4,6 +4,7 @@ var app            = express();
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
 var mysql          = require('mysql');
+var nodemailer     = require('nodemailer');
 
 
 // configuration ===========================================
@@ -47,11 +48,21 @@ var connection = mysql.createConnection({
   database : 'tastleon_intranet'
 });
 
+// nodemailer ==================================================
+// Set up transporter object (with defaults) to send emails
+var transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: 'assessorintranet@gmail.com',
+      pass: 'usccsci401'
+    }
+});
+
 
 // routes ==================================================
 //require('./app/routes')(app,passport); // pass our application into our routes
 
-require('./app/routes')(app, mysql); // pass our application into our routes
+require('./app/routes')(app, mysql, transporter); // pass our application into our routes
 
 
 // start app ===============================================
