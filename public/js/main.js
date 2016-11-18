@@ -1,10 +1,63 @@
 //name of module and array of dependent modules
 var app =angular
     .module('intranet', ['ngRoute'])
-    .config(function($routeProvider, $locationProvider) {
+    .config(function($routeProvider, $locationProvider, $httpProvider) {
+
+      var checkLoggedin = function($q, $timeout, $http, $location, $rootScope,$window){
+        // Initialize a new promise
+        console.log('in checklogged in function');
+        var deferred = $q.defer();
+
+        // Make an AJAX call to check if the user is logged in
+        $http.get('/loggedin').success(function(user){
+          // Authenticated
+          console.log(user);
+          if (user !== '0'){
+            /*$timeout(deferred.resolve, 0);*/
+            console.log("LOGGED IN SHOULD FORWARD NOW")
+            deferred.resolve();
+          }
+
+
+          // Not Authenticated
+          else {
+          console.log('not logged in please do so');
+            //$timeout(function(){deferred.reject();}, 0);
+            deferred.reject();
+          $window.location.href = '/login';
+          }
+        });
+
+        return deferred.promise;
+      };
+      //================================================
+
+      //================================================
+      // Add an interceptor for AJAX errors
+      // //================================================
+      // $httpProvider.interceptors.push(function($q, $location) {
+      //   return {
+      //     response: function(response) {
+      //       // do something on success
+      //       console.log('success');
+      //       return response;
+      //     },
+      //     responseError: function(response) {
+      //       console.log('respone error interceptor');
+      //       if (response.status === 401)
+      //         $location.url('/login');
+      //       return $q.reject(response);
+      //     }
+      //   };
+      // });
+
+
         $routeProvider
             .when('/',{
                 templateUrl: '/templates/index.html',
+                resolve: {
+                  loggedin: checkLoggedin
+                }
             })
             .when('/search/:query',{
                 templateUrl: '/templates/search.html',

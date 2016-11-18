@@ -12,22 +12,20 @@ module.exports = function(app, mysql, passport, transporter) {
 
 		// CHECK THE USER STORED IN SESSION FOR A CUSTOM VARIABLE
 		// you can do this however you want with whatever variables you set up
-		if (true)
-		return next();
+		if (req.isAuthenticated()){
+			console.log("logged in");
+			next();
+		}else{
+			console.log("sending 401");
+			// return next();
+				return res.send(401);
+			//	return res.redirect('/login');
+		}
+
 
 		// IF A USER ISN'T LOGGED IN, THEN REDIRECT THEM SOMEWHERE
-		res.redirect('/');
-	}
-	// app.get('/', function(req, res) {
-    // 	res.sendFile(path.join(__dirname + '/index.html'));
-	// });
-	// app.post('/login',
- 	passport.authenticate('WindowsAuthentication', {
-                                  successRedirect: '/',
-                                  failureRedirect: '/login',
-                                  failureFlash:    true }
-							  );
 
+	};
 
 	function testConn(){
 		var connection = mysql.createConnection({
@@ -39,6 +37,23 @@ module.exports = function(app, mysql, passport, transporter) {
 		return connection
 	}
 
+
+	app.post('/login',passport.authenticate('WindowsAuthentication', {
+
+		successRedirect: '/',
+		failureRedirect: '/login',
+		failureFlash:    false }));
+
+	app.get('/loggedin', function(req,res){
+		console.log(req.user);
+		 res.send(req.isAuthenticated() ? req.user: '0');
+		//res.send('apple');
+
+	});
+
+	app.get('/login', function(req,res){
+		res.sendfile('./public/login.html');
+	})
 	app.post('/get_announcement', function (req, res) {
 		//store data from DB upon successful response.
 		var data_received;
@@ -190,9 +205,16 @@ module.exports = function(app, mysql, passport, transporter) {
 		res.send(JSON.stringify({'good':200}));
 	});
 
-	app.get('/*', isAuthenticated, function(req, res) {
+	app.get('/', function(req, res) {
 		res.sendfile('./public/index.html');
 	});
+
+	app.get('/*',function(req, res) {
+		res.sendfile('./public/index.html');
+	});
+	// app.all('/*', isAuthenticated,function(req, res) {
+	// 	res.sendfile('./public/index.html');
+	// });
 
 
 
