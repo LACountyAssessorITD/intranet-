@@ -43,6 +43,19 @@ module.exports = function(app, mysql, passport, transporter) {
 		successRedirect: '/',
 		failureRedirect: '/login',
 		failureFlash:    false }));
+	// ),function(err,user,info){
+	// 	if(err){
+	// 		console.log("auth error");
+	// 		return next(err);
+	// 	}
+	// 	req.login(user, function(err){
+	// 		if(err){
+	// 			return next(err);
+	// 		}
+	// 		return res.send('littl');
+	// 	});
+	// }
+
 
 	app.get('/loggedin', function(req,res){
 		console.log(req.user);
@@ -205,11 +218,11 @@ module.exports = function(app, mysql, passport, transporter) {
 		res.send(JSON.stringify({'good':200}));
 	});
 
-	app.get('/', function(req, res) {
+	app.get('/', isAuthenticated,function(req, res) {
 		res.sendfile('./public/index.html');
 	});
 
-	app.get('/*',function(req, res) {
+	app.get('/*',isAuthenticated, function(req, res) {
 		res.sendfile('./public/index.html');
 	});
 	// app.all('/*', isAuthenticated,function(req, res) {

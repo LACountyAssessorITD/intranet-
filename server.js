@@ -46,7 +46,7 @@ ldap: {
       'emp_num' : userjson._json.employeeNumber
     };
     console.log("SUCCESSFULLY authed. But still have to redirect");
-    done(null,userjson._json.employeeNumber);
+    done(null,userjson);
   }else{
     done(null,false);
   }

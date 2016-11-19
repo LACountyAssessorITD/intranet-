@@ -101,6 +101,11 @@ var app =angular
                     }
                 }
             })
+            .when('/profile',{
+              templateUrl:'/templates/user_profile.html',
+              controller:'profileCtrl',
+              controllerAs:'vm'
+            })
             .when('/hr', {
                 templateUrl: '/templates/hr/hr-main.html',
                 controller: 'PageController',
