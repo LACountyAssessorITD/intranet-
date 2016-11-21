@@ -44,7 +44,7 @@ module.exports = function(app, mysql, transporter) {
 			// Save the first result from query into received data.
 			data_received = rows[0];
 		//	iterate through the data and print TEST PURPOSES ONLY
-			 rows.forEach(function(element){
+			 rows.forEach(function(element) {
 				 console.log(element);
 			 });
 
@@ -111,7 +111,7 @@ module.exports = function(app, mysql, transporter) {
 
 		// setup e-mail data with unicode symbols
 		var mailOptions = {
-		    sender: 'nroubal@usc.edu', // sender address
+		    sender: 'assessorintranet@usc.edu', // sender address
 		    to: req.body.to, // list of receivers
 		    subject: req.body.subject, // Subject line
 		    text: req.body.body, // plaintext body
@@ -132,6 +132,37 @@ module.exports = function(app, mysql, transporter) {
 		res.sendfile('./public/index.html');
 	});
 
+	app.post('/get_alerts', function (req, res) {
+		//console.log("getting");
+		//store data from DB upon successful response.
+		var data_received;
 
+		//Open up the sql connection and send query.
+		var myConn = testConn();
 
+		myConn.query('SELECT type FROM Alerts',
+			function(err, rows, fields) {
+				if (err) {
+					console.log(err);
+					throw err;
+				}
+
+			// Save the first result from query into received data.
+			data_received = rows;
+			//data_received = rows;
+
+			// iterate through the data and print TEST PURPOSES ONLY
+			rows.forEach(function(element) {
+				 console.log(element);
+			});
+
+			//close the connection and send the data convert array to json.
+			myConn.end();
+			res.send(JSON.stringify(data_received));
+		});
+	});
+
+	app.get('/*', function(req, res) {
+		res.sendfile('./public/index.html');
+	});
 };
