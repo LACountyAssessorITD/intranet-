@@ -1,6 +1,6 @@
 angular
     .module('intranet')
-    .controller('PageControllerName', function($location,$scope,$http, $sce,$q, resolve_page_name){
+    .controller('PageControllerName', function($location,$scope,$http, $sce,$q,$window, resolve_page_name){
         //vm is referring to "THIS" like java/c++ this.something.
         var vm = this;
         //console.log("VAL:"+resolve_page_name);
@@ -45,12 +45,14 @@ angular
         //     }
         $q.when(resolve_page_name).then(
             function (result){
-            //    console.log("result:"+result);
-                if(result == null){
-                    console.log("u fuked up");
+               console.log("results:"+Object.values(result));
+                if(Object.values(result) == -1){
+                    $window.location.href = '/';
                 }else{
                     vm.load_page();
                 }
+        }),(function(e){
+            console.log(e);
         });
         vm.load_page = function (){
             vm.ann;

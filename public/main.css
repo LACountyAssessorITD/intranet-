@@ -47,8 +47,8 @@
 	flex-basis: 20%;
 }
 .main-content {
-	padding-left:10%;
-	padding-right:10%;
+	padding-left:5%;
+	padding-right:5%;
     max-width: 100%;
 	background-color:#FBFBFB;
 	display: block;
@@ -145,7 +145,16 @@
 	width:50%;
 	float: right;
 	padding-left: 10%;
+}
 
+.left-sidebar-home-sect{
+	width:40%;
+	float:left;
+}
+.right-sidebar-home-sect{
+	width:60%;
+	float: right;
+	padding-left: 5%;
 }
 
 /* THEME 01 EDITOR

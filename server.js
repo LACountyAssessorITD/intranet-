@@ -29,12 +29,18 @@ app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-M
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+var DEV = true;
+
+
 passport.use(new WindowsStrategy({
 ldap: {
     url:             'ldap://laassessor.co.la.ca.us',
     base:            'OU=ASSR,DC=laassessor,DC=co,DC=la,DC=ca,DC=us',
     bindDN:          'bsg_ldap@laassessor',
-    bindCredentials: 'SharePoint123!'
+    bindCredentials: 'SharePoint123!',
+    maxConnections: 500,
+    reconnect: true
   },
   integrated:      false
 }, function(profile, done){
@@ -60,13 +66,22 @@ passport.deserializeUser(function(user, done) {
 done(null, user);
 });
 
+
+
+
+// var connection = mysql.createConnection({
+//   host     : 'localhost',
+//   user     : 'tastleonar',
+//   password : '#Assessor%usc&1067',
+//   database : 'tastleon_intranet'
+// });
+
 var connection = mysql.createConnection({
-  host     : 'localhost',
+  host     : 'uscitp.com',
   user     : 'tastleonar',
-  password : '#Assessor%usc&1067',
+  password : 'uscitp2016',
   database : 'tastleon_intranet'
 });
-
 // nodemailer ==================================================
 // Set up transporter object (with defaults) to send emails
 var transporter = nodemailer.createTransport({
@@ -82,6 +97,7 @@ var transporter = nodemailer.createTransport({
 //require('./app/routes')(app,passport); // pass our application into our routes
 
 require('./app/routes')(app, mysql,passport, transporter); // pass our application into our routes
+
 
 
 // start app ===============================================

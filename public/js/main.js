@@ -56,7 +56,7 @@ var app =angular
             .when('/',{
                 templateUrl: '/templates/index.html',
                 resolve: {
-                  loggedin: checkLoggedin
+                 // loggedin: checkLoggedin
                 }
             })
             .when('/search/:query',{
@@ -133,7 +133,11 @@ var app =angular
                                 'page_name' : $route.current.params.name
                             }
                         );
-                        return $http.post('/get_page_from_name', post_data);
+                        return $http.post('/get_page_from_name', post_data).then(function(response){
+                            console.log('response:'+response);
+                            return response.data;
+
+                        });
 
 
                         // var division_id = $route.current.params.division_id;
@@ -143,7 +147,7 @@ var app =angular
             // use the HTML5 History API
             $locationProvider.html5Mode(true);
     })
-.controller('HomeController', function($location) {
+.controller('HomeController', function($location, $http) {
     var vm = this;
     console.log("CHEWEY WE'RE HOME");
 
@@ -178,6 +182,17 @@ var app =angular
             linkUrl: ""
         }
     ];
+
+
+    vm.page_data;
+    //Fetching the particular page. and send the page_id as payload data to
+    //the endpoint which in turn fetches from the DB with the page ID.
+    $http.post('/get_apps')
+    .success(function(data){
+        //console.log(Object.values(data));
+        vm.page_data = data;
+    });
+
 
     //console.log("here");
     vm.searchBox = function(eventCode){

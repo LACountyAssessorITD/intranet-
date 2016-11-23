@@ -3,28 +3,22 @@ module.exports = function(app, mysql, passport, transporter) {
 	// server routes ===========================================================
 	// handle things like api calls
 	// authentication routes
-
 	// frontend routes =========================================================
 	// route to handle all angular requests
 	function isAuthenticated(req, res, next) {
-
 		// do any checks you want to in here
-
 		// CHECK THE USER STORED IN SESSION FOR A CUSTOM VARIABLE
 		// you can do this however you want with whatever variables you set up
 		if (req.isAuthenticated()){
-			console.log("logged in");
+			console.log("Authenticated");
 			next();
 		}else{
-			console.log("sending 401");
-			// return next();
-				return res.send(401);
-			//	return res.redirect('/login');
+			req.session.returnTo = req.path; 
+			console.log("Not Authenticated");
+			res.redirect('/login');
+			//next();
 		}
-
-
 		// IF A USER ISN'T LOGGED IN, THEN REDIRECT THEM SOMEWHERE
-
 	};
 
 	function testConn(){
@@ -43,19 +37,6 @@ module.exports = function(app, mysql, passport, transporter) {
 		successRedirect: '/',
 		failureRedirect: '/login',
 		failureFlash:    false }));
-	// ),function(err,user,info){
-	// 	if(err){
-	// 		console.log("auth error");
-	// 		return next(err);
-	// 	}
-	// 	req.login(user, function(err){
-	// 		if(err){
-	// 			return next(err);
-	// 		}
-	// 		return res.send('littl');
-	// 	});
-	// }
-
 
 	app.get('/loggedin', function(req,res){
 		console.log(req.user);
@@ -67,6 +48,28 @@ module.exports = function(app, mysql, passport, transporter) {
 	app.get('/login', function(req,res){
 		res.sendfile('./public/login.html');
 	})
+
+	app.post('/get_apps', function (req, res) {
+		//store data from DB upon successful response.
+		var data_received;
+
+		//Open up the sql connection and send query.
+		var myConn = testConn();
+		var sql = 'SELECT * FROM Apps ORDER BY `name` ASC';
+		sql = mysql.format(sql);
+		myConn.query(sql, function(err, rows, fields) {
+			if (err){
+				console.log(err);
+				throw err;
+			}
+			// Save the first result from query into received data.
+			data_received = rows;
+			//close the connection and send the data convert array to json.
+			myConn.end();
+			res.send(JSON.stringify(data_received));
+		});
+	});
+
 	app.post('/get_announcement', function (req, res) {
 		//store data from DB upon successful response.
 		var data_received;
@@ -125,16 +128,22 @@ module.exports = function(app, mysql, passport, transporter) {
 		var myConn = testConn(); //open up the connection and send query
 
 		var payload =req.body.page_name;
-		var sql = 'SELECT * FROM Pages WHERE url = ? LIMIT 1';
+		var sql = 'SELECT * FROM `Pages` WHERE `url` = ? LIMIT 1';
 		var inserts = [payload];
 		sql = mysql.format(sql, inserts);
 		console.log(sql);
 		myConn.query(sql, function(err, rows, fields) {
 			if (err){
 				console.log(err);
+				console.log(err.fatal);
 				throw err;
 			}
-			page_data_received = rows[0]; //store the first row from result.
+			if (rows.length > 0){
+				page_data_received = rows[0]; //store the first row from result.
+			}else{
+				res.send({'status':-1});
+				//res.redirect('/');
+			}
 			//close connection and send back data as JSON
 			myConn.end();
 			res.send(JSON.stringify(page_data_received));
@@ -218,13 +227,16 @@ module.exports = function(app, mysql, passport, transporter) {
 		res.send(JSON.stringify({'good':200}));
 	});
 
-	app.get('/', isAuthenticated,function(req, res) {
+	app.get('/',isAuthenticated, function(req, res) {
 		res.sendfile('./public/index.html');
 	});
 
 	app.get('/*',isAuthenticated, function(req, res) {
 		res.sendfile('./public/index.html');
 	});
+
+
+
 	// app.all('/*', isAuthenticated,function(req, res) {
 	// 	res.sendfile('./public/index.html');
 	// });

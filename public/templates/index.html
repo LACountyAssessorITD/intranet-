@@ -1,39 +1,41 @@
-<h1> Home Page </h1>
-
-<p>The Assessor’s Intranet site is a comprehensive and fast way to find out
-    what’s going on in our department. As the site develops, it will be your
-    link for interest to the Valuator newsletter and press releases – as
-    well as promotional opportunities. I hope you find it helpful and use
-    it on a regular basis.
-<img  class="img-page" ng-src="img/dtla.jpg"></img>
 
 
-<h4>Assessor "Class Photo" </h4>
-View and download the HOA class photo by clicking here,
-and the West District Office photo here. Other District Office photos are coming soon!
-
-<h4>Recognizing Our Ideas Award Ceremony </h4>
-Employees being recognized for their suggestions at the most
-recent awards ceremony held November 3, 2015.
-
-<h4>The Big Fat Tack </h4>
-The Office of the Assessor’s New Blog about the Legacy Replacement System
-
-</p>
-
-<form action="/login" method="post">
-    <div>
-        <label>Username:</label>
-        <input type="text" name="username"/>
-    </div>
-    <div>
-        <label>Password:</label>
-        <input type="password" name="password"/>
-    </div>
-    <div>
-        <input type="submit" value="Log In"/>
-    </div>
-</form>
 
 
+
+
+<div class="body-img-section">
+        <div class="left-sidebar-home-sect">
+            <div>
+              <h3><strong>Intranet Apps</strong></h3>
+              <div  class="list-group">
+                <a ng-repeat="app in vm.page_data" href="{{app.url}}" class="list-group-item">{{app.name}}</a>
+              </div>
+            </div>
+        </div>
+        <div class="right-sidebar-home-sect">
+            <h1> Home Page </h1>
+
+            <p>The Assessor’s Intranet site is a comprehensive and fast way to find out
+                what’s going on in our department. As the site develops, it will be your
+                link for interest to the Valuator newsletter and press releases – as
+                well as promotional opportunities. I hope you find it helpful and use
+                it on a regular basis.
+            <img  class="img-page" ng-src="img/dtla.jpg"></img>
+
+
+            <h4>Assessor "Class Photo" </h4>
+            View and download the HOA class photo by clicking here,
+            and the West District Office photo here. Other District Office photos are coming soon!
+
+            <h4>Recognizing Our Ideas Award Ceremony </h4>
+            Employees being recognized for their suggestions at the most
+            recent awards ceremony held November 3, 2015.
+
+            <h4>The Big Fat Tack </h4>
+            The Office of the Assessor’s New Blog about the Legacy Replacement System
+
+            </p>
+        </div>
+    <div style="clear: both;"></div>
 </div>
