@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>User Profile</title>
+  </head>
+  <body>
+  <div>
+<!--USER PROFILE PAGE -->
+    <h1>User Profile</h1>
+    <h2>{{}}</h2>
+
+    <h4>Managed Pages</h4>
+<!--
+    <div class="managed-pages-list">
+      <table>
+        <tr ng-repeat="page in pages">
+          <td>{{ vm.user }}</td>
+          <td>{{ vm.user }}</td>
+        </tr>
+      </table>
+    </div>
+  -->
+    <h3>Alert Subscriptions</h3>
+    <div class="alert-subscription-list">
+      <table>
+        <tr ><!--How many alert types do we have? I could just hard code them i guess-->
+          <td ng-repeat="alert in alerts"><input type="checkbox" ng-checked="vm.selection.indexOf(alert) > -1" ng-click="toggleSelection(alert)">{{alert}}</td>
+        </tr>
+      </table>
+    </div>
+
+    <br>
+    <form ng-submit="vm.submit()"><!--not sure what function i'd call-->
+      <button type="submit" class="btn btn-default">Save</button>
+    </form>
+
+  </div>
+
+  </div>
+
+
+  </body>
+</html>

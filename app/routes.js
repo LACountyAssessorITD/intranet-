@@ -176,8 +176,8 @@ module.exports = function(app, mysql, transporter) {
 
 			// Save the first result from query into received data.
 			data_received = rows;
-			//data_received = rows;
 
+			console.log(rows);
 			// iterate through the data and print TEST PURPOSES ONLY
 			rows.forEach(function(element) {
 				 console.log(element);

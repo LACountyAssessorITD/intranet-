@@ -3,27 +3,26 @@ angular
 .controller('alertCtrl', function($scope, $http) {
 
     var vm = this;
-
-    var alert_data;
-    /* = JSON.stringify(
-        {
-            'type' : ''
-        }
-    );
-    */
-    $http.post('/get_alerts', alert_data)
+    //var alert_data;
+    $scope.alerts;
+    var data_received;
+    // Get alerts from db
+    $http.post('/get_alerts', data_received)
     .success(function(data) {
-        vm.alerts = data;
-        console.log(vm.alerts.name);
+        //vm.alerts = data;
+        console.log(data);
+        $scope.alerts = [];
+        // Add alerts to angular scope
+        for(var i = 0; i < data.length; i++) {
+            var alert = data[i];
+            //console.log(alert.type);
+            $scope.alerts.push(alert.type);
+       }
+
     });
 
-    // TODO: TURN alert_data into array of alert types _______________________
-
-
-    $scope.alerts = ['traffic', 'general'];
-
     // selected alert groups
-    vm.selection = []
+    vm.selection = [];
 
     // toggle selection for a given alertType by name
     $scope.toggleSelection = function toggleSelection(alertType) {
