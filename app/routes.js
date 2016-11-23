@@ -15,8 +15,8 @@ module.exports = function(app, mysql, transporter) {
 	// 						  );
 	//
 
-	function testConn(){
-		var connection = mysql.createConnection({
+	function testConn() {
+		var connection = mysql.createConnection( {
 		  host     : 'uscitp.com',
 		  user     : 'tastleonar',
 		  password : 'uscitp2016',
@@ -109,14 +109,41 @@ module.exports = function(app, mysql, transporter) {
 		console.log(req.body.subject);
 		console.log(req.body.body);
 
+		// TODO: Get from database a list of emails that match the types
+
+		var alertTypes = req.body.to;
+
+		var myConn = testConn(); //open up the connection and send query
+
+		var data_received = [];
+
+		var query = "SELECT userEmail FROM AlertGroups WHERE alertType IN ('" + alertTypes.join("','") + "')";
+		//console.log(query);
+		myConn.query(query, function(err, rows, fields) {
+			if (err) {
+				console.log(err);
+				throw err;
+			}
+			var row;
+			for (row in rows) {
+					var email = JSON.stringify(rows[row].userEmail);
+					email = email.replace(/"/g,"");
+					data_received.push(email);
+			}
+			console.log(data_received);
+
+			//close connection and send back data as JSON
+			myConn.end();
+		});
+
 		// setup e-mail data with unicode symbols
 		var mailOptions = {
-		    sender: 'assessorintranet@usc.edu', // sender address
+		    sender: 'assessorintranet@gmail.com', // sender address
 		    to: req.body.to, // list of receivers
 		    subject: req.body.subject, // Subject line
 		    text: req.body.body, // plaintext body
 		};
-
+/*
 		// send mail with defined transport object
 		transporter.sendMail(mailOptions, function(error, info) {
 		    if(error) {
@@ -124,8 +151,8 @@ module.exports = function(app, mysql, transporter) {
 		    }
 		    console.log('Message sent: ' + info.response);
 		});
-
-		res.send(JSON.stringify({'good':200}));
+*/
+		//res.send(JSON.stringify({'good':200}));
 	});
 
 	app.get('/*', function(req, res) {

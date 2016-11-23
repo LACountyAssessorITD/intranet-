@@ -9,14 +9,14 @@
     <label for="body">Body:</label>
     <textarea class="form-control" ng-model="body" id="body"></textarea>
 
-    <label ng-repeat="fruitName in fruits">
+    <label ng-repeat="alertType in alerts">
     <input
       type="checkbox"
-      name="selectedFruits[]"
-      value="{{fruitName}}"
-      ng-checked="selection.indexOf(fruitName) > -1"
-      ng-click="toggleSelection(fruitName)"
-    > {{fruitName}}
+      name="selectedAlerts[]"
+      value="{{alertType}}"
+      ng-checked="vm.selection.indexOf(alertType) > -1"
+      ng-click="toggleSelection(alertType)"
+    > {{alertType}}
     </label>
 
   </div>

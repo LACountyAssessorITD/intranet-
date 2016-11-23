@@ -17,43 +17,45 @@ angular
         console.log(vm.alerts.name);
     });
 
+    // TODO: TURN alert_data into array of alert types _______________________
 
-    $scope.fruits = ['apple', 'orange', 'pear', 'naartjie'];
 
-    // selected fruits
-    $scope.selection = ['apple', 'pear'];
-    vm.selected = []
-    //console.log($scope.selection);
-    // toggle selection for a given fruit by name
-    $scope.toggleSelection = function toggleSelection(fruitName) {
-      var idx = $scope.selection.indexOf(fruitName);
+    $scope.alerts = ['traffic', 'general'];
+
+    // selected alert groups
+    vm.selection = []
+
+    // toggle selection for a given alertType by name
+    $scope.toggleSelection = function toggleSelection(alertType) {
+
+      var idx = vm.selection.indexOf(alertType);
 
       // is currently selected
       if (idx > -1) {
-        $scope.selection.splice(idx, 1);
-        console.log($scope.selection);
+        vm.selection.splice(idx, 1);
+        console.log(vm.selection);
       }
 
       // is newly selected
       else {
-        $scope.selection.push(fruitName);
-        console.log($scope.selection);
+        vm.selection.push(alertType);
+        console.log(vm.selection);
       }
-      vm.selected = $scope.selction;
-      console.log(vm.selected);
     };
 
     // Submit alert to node
     vm.submit = function() {
-        //console.log();
+
+        //console.log(vm.selection);
+
         var post_data = JSON.stringify(
             {
-                'to' : $scope.to,
+                'to' : vm.selection,
                 'subject' : $scope.subject,
                 'body' : $scope.body
             }
         );
-        //console.log(post_data);
+
         $http.post('/submit_alert', post_data)
         .success(function(data, status, headers, config) {
             console.log("Posted successfully");
