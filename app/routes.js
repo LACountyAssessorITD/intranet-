@@ -13,7 +13,7 @@ module.exports = function(app, mysql, passport, transporter) {
 			console.log("Authenticated");
 			next();
 		}else{
-			req.session.returnTo = req.path; 
+			req.session.returnTo = req.path;
 			console.log("Not Authenticated");
 			res.redirect('/login');
 			//next();
@@ -204,6 +204,102 @@ module.exports = function(app, mysql, passport, transporter) {
 			  });
 	});
 
+	app.post('/get_alerts', function (req, res) {
+		//console.log("getting");
+		//store data from DB upon successful response.
+		var data_received;
+
+		//Open up the sql connection and send query.
+		var myConn = testConn();
+
+		myConn.query('SELECT type FROM Alerts',
+			function(err, rows, fields) {
+				if (err) {
+					console.log(err);
+					throw err;
+				}
+
+			// Save the first result from query into received data.
+			data_received = rows;
+			/*
+			//console.log(rows);
+			// iterate through the data and print TEST PURPOSES ONLY
+			rows.forEach(function(element) {
+				 console.log(element);
+			});
+			*/
+			//close the connection and send the data convert array to json.
+			myConn.end();
+			res.send(JSON.stringify(data_received));
+		});
+	});
+
+	app.post('/get_subscriptions', function (req, res) {
+		//console.log("WHA GWAN JAMAICA");
+		//console.log(req.body.email);
+		//var email = "'" + req.body.email + "'";
+		var email = req.body.email;
+		//Open up the sql connection and send query.
+		var data_received;
+		var myConn = testConn();
+		myConn.query("SELECT alertType FROM AlertGroups where userEmail = " + mysql.escape(email),
+			function(err, data_received, fields) {
+				if (err) {
+					console.log(err);
+					throw err;
+				}
+
+			//console.log(data_received);
+			/*
+			// iterate through the data and print TEST PURPOSES ONLY
+			rows.forEach(function(element) {
+				 console.log(element);
+			});
+			*/
+
+			//close the connection and send the data convert array to json.
+			myConn.end();
+			res.send(JSON.stringify(data_received));
+		});
+	});
+
+
+	app.post('/subscribe', function (req, res) {
+		//console.log(req.body);
+		//var email = "'" + req.body.email + "'";
+		var email = req.body.email;
+		var myConn = testConn();
+
+		// Delete all previous db entries matching user email to alert subscription type
+		myConn.query("DELETE FROM AlertGroups WHERE userEmail = " + mysql.escape(email),
+			function(err, result) {
+				if (err) {
+					//console.log(err);
+					throw err;
+				}
+				console.log('Deleted ' + result.affectedRows + ' rows');
+		});
+
+		req.body.alerts.forEach(function(element) {
+			 var subscription = { alertType: element, userEmail: email };
+			 console.log(subscription);
+			 myConn.query('INSERT INTO AlertGroups SET ?', subscription,
+	 			function(err, result) {
+	 			  if(err) {
+						console.log(err);
+						throw err;
+					}
+					console.log('Succesfully inserted:', subscription);
+	 		});
+		});
+
+		//close the connection and send the data convert array to json.
+		myConn.end();
+		res.send(JSON.stringify({'good':200}));
+	});
+
+
+
 	app.post('/submit_alert', function (req, res) {
 		console.log(req.body.to);
 		console.log(req.body.subject);
@@ -227,6 +323,10 @@ module.exports = function(app, mysql, passport, transporter) {
 		res.send(JSON.stringify({'good':200}));
 	});
 
+
+
+
+	/*
 	app.get('/',isAuthenticated, function(req, res) {
 		res.sendfile('./public/index.html');
 	});
@@ -234,7 +334,7 @@ module.exports = function(app, mysql, passport, transporter) {
 	app.get('/*',isAuthenticated, function(req, res) {
 		res.sendfile('./public/index.html');
 	});
-
+	*/
 
 
 	// app.all('/*', isAuthenticated,function(req, res) {
