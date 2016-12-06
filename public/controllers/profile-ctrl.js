@@ -4,7 +4,10 @@ angular
 
     var vm = this;
     vm.userProfile;
+<<<<<<< HEAD
     /*
+=======
+>>>>>>> master
     $http.get('/loggedin').then(function(data) {
         console.log(data.data._json);
         vm.userProfile =data.data._json;
@@ -17,6 +20,7 @@ angular
 
 
     });
+<<<<<<< HEAD
     */
 
     var data_received;
@@ -34,4 +38,7 @@ angular
        }
 
     });
+=======
+
+>>>>>>> master
 });
