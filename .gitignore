@@ -6,8 +6,6 @@ lib-cov
 *.out
 *.pid
 *.gz
-*.mp4
-*.MP4
 
 pids
 logs

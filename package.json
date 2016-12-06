@@ -3,11 +3,8 @@
   "main": "server.js",
   "dependencies": {
     "body-parser": "~1.4.2",
-    "cookie-parser": "^1.4.3",
     "express": "~4.5.1",
-    "express-session": "^1.14.2",
     "method-override": "~2.0.2",
-    "passport-local": "^1.0.0",
     "passport-windowsauth": "^1.0.0"
   }
 }
