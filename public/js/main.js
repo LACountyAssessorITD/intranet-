@@ -57,8 +57,12 @@ angular
                 templateUrl: '/templates/alerts.html',
                 controller: 'alertCtrl',
                 controllerAs: 'vm'
+            })
+            .when('/profile',{
+              templateUrl:'/templates/user_profile.html',
+              controller:'profileCtrl',
+              controllerAs:'vm'
             });
-
             // .when('/hr-add-ann', {
             //     templateUrl: '/templates/hr/announcements/hr-add.html',
             //     controller: 'HRAddController',

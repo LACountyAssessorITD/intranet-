@@ -3,26 +3,14 @@ angular
 .controller('profileCtrl', function($scope, $http) {
 
     var vm = this;
-    vm.userProfile;
-    /*
-    $http.get('/loggedin').then(function(data) {
-        console.log(data.data._json);
-        vm.userProfile =data.data._json;
-        vm.givenName = vm.userProfile.givenName;
-        vm.department = vm.userProfile.department;
-        vm.description = vm.userProfile.description;
-        vm.displayName = vm.userProfile.displayName;
-        vm.title = vm.userProfile.title;
-        vm.phone = vm.userProfile.telephoneNumber;
+    console.log("hello");
 
-
-    });
-    */
 
     var data_received;
-
+    $scope.alerts;
     http.post('/get_alerts', data_received)
     .success(function(data) {
+        console.log("getting");
         //vm.alerts = data;
         console.log(data);
         $scope.alerts = [];
@@ -32,6 +20,14 @@ angular
             //console.log(alert.type);
             $scope.alerts.push(alert.type);
        }
-
     });
+    /*
+    <!--
+    <td ng-repeat="alert in alerts"><input type="checkbox" ng-checked="vm.selection.indexOf(alert) > -1" ng-click="toggleSelection(alert)">{{alert}}</td>
+    -->
+    */
+
+    vm.submit = function() {
+        console.log("here");
+    }
 });

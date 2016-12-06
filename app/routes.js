@@ -159,8 +159,15 @@ module.exports = function(app, mysql, transporter) {
 		res.sendfile('./public/index.html');
 	});
 
+
+
+
+
+
+	
+
 	app.post('/get_alerts', function (req, res) {
-		//console.log("getting");
+		console.log("getting");
 		//store data from DB upon successful response.
 		var data_received;
 
@@ -188,6 +195,12 @@ module.exports = function(app, mysql, transporter) {
 			res.send(JSON.stringify(data_received));
 		});
 	});
+
+
+
+
+
+
 
 	app.get('/*', function(req, res) {
 		res.sendfile('./public/index.html');
