@@ -1,8 +1,11 @@
 angular
     .module('intranet')
-    .controller('PageController', function($scope,$http, $sce){
+    .controller('PageController', function($location,$scope,$http, $sce){
         //vm is referring to "THIS" like java/c++ this.something.
         var vm = this;
+        //console.log("VAL:"+resolve_page_name);
+
+        // Now we need to send the http post and wait for that promise to resolve before continuing
 
         /*
         Access elements in the corresponding JSON data by
@@ -24,13 +27,15 @@ angular
                             [8]body_02
                             [9]video_01
                             [10]video_02
+                            [11]style
+                            [12]url
         *
         *
         */
-
         vm.ann;
         vm.page_data;
-
+        vm.sidebar = {'apple':'dog'};
+        vm.cal= $sce.trustAsResourceUrl("https://outlook.live.com/owa//calendar/00000000-0000-0000-0000-000000000000/8574a07b-d35b-4066-95b2-d2e208d3ae35/cid-750F666625CB3A37/index.html");
         var announcement_data = JSON.stringify(
             {
                 'division_id' : 0
@@ -42,7 +47,8 @@ angular
              //console.log("TEST:" +JSON.stringify(data));
             //console.log(data);
             vm.ann=data;
-            console.log(vm.ann);
+            vm.ann.date_created = new Date(vm.ann.date_created).toDateString();
+            //console.log(vm.ann);
             // console.log("status: "+status);
             // console.log("headers: "+headers);
             // console.log("config: "+config);

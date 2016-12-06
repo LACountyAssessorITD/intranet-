@@ -47,10 +47,12 @@
 	flex-basis: 20%;
 }
 .main-content {
-	/*padding-left:15px;*/
+	padding-left:5%;
+	padding-right:5%;
+    max-width: 100%;
 	background-color:#FBFBFB;
 	display: block;
-	flex-basis: 80%;
+	flex-basis: 100%;
 	flex-grow: 0;
 	height: auto;
 }
@@ -110,4 +112,123 @@
 
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
+}
+.img-page{
+	display: block;
+	margin: auto;
+	/*auto height -> scales pretty*/
+	height: auto;
+	/*100% -> fits in div*/
+	max-width: 100%;
+}
+
+#calendar-one{
+	width:100%;
+	height:400px;
+}
+
+/*
+*
+* THEME CSS CODE
+*
+*/
+
+/*GENERAL CASE*/
+.body-img-section {
+	display:inline-block;
+}
+.left-container-sect{
+	width:50%;
+	float:left;
+}
+.right-container-sect{
+	width:50%;
+	float: right;
+	padding-left: 10%;
+}
+
+.left-sidebar-home-sect{
+	width:40%;
+	float:left;
+}
+.right-sidebar-home-sect{
+	width:60%;
+	float: right;
+	padding-left: 5%;
+}
+
+/* THEME 01 EDITOR
+*/
+.left-col-item{
+	float:left;
+	width:50%;
+}
+.right-col-item{
+	float: right;
+	padding-left: 10%;
+}
+
+/*THEME 01 */
+#t1_heading_01{
+
+}
+#t1_body_01{
+    width: 100%;
+}
+#t1_img_01{
+    display: block;
+    margin: auto;
+	/*auto height -> scales pretty*/
+	height: auto;
+	/*100% -> fits in div*/
+	max-width: 100%;
+}
+
+#t1_img_02{
+	display:inline-block;
+	max-width: 100%;
+}
+#t1_body_02{
+	display:inline-block;
+	max-width: 100%;
+	margin-right: 10%;
+}
+#t1_video_01{
+	display:block;
+	margin:auto;
+	width:100%;
+	height:auto;
+}
+
+
+/*THEME 02 */
+#t2_heading_01{
+
+}
+#t2_body_01{
+    width: 100%;
+}
+#t2_img_01{
+	display: block;
+	margin: auto;
+	/*auto height -> scales pretty*/
+	height: auto;
+	/*100% -> fits in div*/
+	max-width: 100%;
+}
+
+#t2_img_02{
+	display:inline-block;
+	max-width: 100%;
+}
+#t2_body_02{
+	display:inline-block;
+	max-width: 100%;
+	margin-right: 10%;
+}
+#t2_video_01{
+	display:block;
+	margin:auto;
+	width:100%;
+	height:auto;
 }

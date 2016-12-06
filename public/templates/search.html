@@ -8,8 +8,7 @@
             <p>{{item.itemTitle}}</p>
         </div>
     <h4> Apps </h4>
-        <div ng-repeat="item in vm.resultListApps">
-
-            <p>{{item.itemTitle}}</p>
-        </div>
+    <div  class="list-group">
+      <a ng-repeat="app in vm.resultListApps" href="{{app.url}}" class="list-group-item">{{app.name}}</a>
+    </div>
 </div>
