@@ -1,0 +1,97 @@
+@import url("./fonts.css");
+
+body{
+  background-image: url("../img/alert-background.jpg");
+}
+
+input.checkbox{
+  background-color: black;
+}
+input.subject{
+  margin-right:51px;
+}
+
+label{
+  font-size:24px;
+  font-family:'Cabin-Bold';
+  margin-right: 10px;
+}
+
+label.body{
+  margin-right:590px;
+}
+
+label.subject{
+  margin-right:10px;
+}
+
+.alert-button{
+  width:15%;
+  background-color:rgba(204, 204, 204, 0.1);
+  border-color: rgba(204, 204, 204, 0.1);
+  font-family:'Cabin-Medium';
+  border-color:#999FA1;
+}
+.alert-types{
+  padding-right: 355px;
+  padding-top: 10px;
+}
+/*placeholder text*/
+::-webkit-input-placeholder {
+   font-family:'Cabin-Bold';
+   font-size:18px;
+   color:#575757;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  font-family:'Cabin-Bold';
+  font-size:18px;
+  color:#575757;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+  font-family:'Cabin-Bold';
+  font-size:18px;
+  color:#575757;
+}
+
+:-ms-input-placeholder {
+  font-family:'Cabin-Bold';
+  font-size:18px;
+  color:#575757;
+}
+
+.alert-container{
+  margin: 20px;
+  margin-top:0px;
+  padding: 200px;
+  padding-top: 50px;
+  text-align: center;
+  font-family:'Cabin-Bold'
+}
+
+.textarea{
+  background-color:rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  border-color:#999FA1;
+  border-width:1px;
+  color:black;
+  margin-left:201px;
+  outline:none;
+  width:60%;
+  transition:height 1s;
+  -webkit-transition:height 1s;
+}
+
+.textbox{
+  background-color:rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  border-color:#999FA1;
+  border-width:1px;
+  color:black;
+  outline:none;
+  height:40px;
+  width:60%;
+  transition:height 1s;
+  -webkit-transition:height 1s;
+}
