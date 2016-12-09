@@ -1,3 +1,5 @@
+@import url('./css/fonts.css');/*to use webfonts*/
+
 .parentMenuFlex {
 	height: auto;
 	display: flex;
@@ -7,6 +9,7 @@
 }
 .logo {
 	padding: 5px;
+
 }
 .header {
 	height: auto;
@@ -17,13 +20,16 @@
 	/*old
 	background: #7474BF; /* fallback for old browsers */
 	/* Chrome 10-25, Safari 5.1-6 */
-	background: -webkit-linear-gradient( #7474BF , #348AC7);
+
+	background-color: rgba(42,46,54,1);
+
+	/*background: -webkit-linear-gradient( #7474BF , #348AC7);*/
 	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera12+, Safari 7+ */
-	background: linear-gradient( #7474BF , #348AC7);
+	/*background: linear-gradient( #7474BF , #348AC7);*/
 	/*display: block;
 	flex-basis: 100%;*/
-	font-family: Montserrat,Helvetica,Arial,sans-serif;
-	font-size: 1.6rem;
+	font-family: 'Cabin-Bold';/*Montserrat,Helvetica,Arial,sans-serif;*/
+	font-size: 2.0rem;/*1.6rem;*/
     font-weight: 300;
     line-height: 1.8;
 }
@@ -33,7 +39,12 @@
 .header-links{
 	display: flex;
 	justify-content: flex-end;
-	flex-basis: 80%;
+	flex-basis: 70%;
+}
+
+
+#search-bar{
+	width:170%;
 }
 
 .main-container{
@@ -91,6 +102,7 @@
 
 .dropdown-content {
     display: none;
+		font-size: 16px;
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;

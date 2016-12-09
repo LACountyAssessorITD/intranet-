@@ -15,7 +15,7 @@ alias for this search controller -->
  <div  ng-controller="HomeController as vm">
 	<header class="header">
 		<div class="header-logo">
-			<img class="logo" src="img/logoLAC.png"> Assessor Intranet </img>
+			<img class="logo" src="img/logoLAC.png"> </img>
 		</div>
 		<div class="header-links">
 			<div class="link-element">
@@ -45,7 +45,7 @@ alias for this search controller -->
 			</div>
 
 			<div class="menu-element">
-				<input type="search" ng-keyup=" vm.searchBox($event.keyCode)" ng-model="vm.searchQuery" class="form-control" placeholder="Search">
+				<input type="search" id="search-bar" ng-keyup=" vm.searchBox($event.keyCode)" ng-model="vm.searchQuery" class="form-control" placeholder="Search">
 			</div>
 		</div>
 	</header>
