@@ -1,7 +1,7 @@
 @import url("./fonts.css");
 
 body {
-  background-image: url("../img/login-background.jpg");
+  background-image: url("../img/stock04.jpg");
 
 }
 
@@ -75,7 +75,7 @@ label{
 }
 
 .textbox{
-  background-color:rgba(204, 204, 204, 0.1);
+  background-color:rgba(255, 255, 255, 0.5);
   border-radius: 3px;
   border-color:#999FA1;
   border-width:1px;
@@ -88,5 +88,5 @@ label{
 }
 
 #login-password{
-  background-color:rgba(0, 0, 0, 0);
+  background-color:rgba(255,255,255,0.5);
 }
