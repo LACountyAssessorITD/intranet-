@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>User Profile</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/user-profile.css">
+  </head>
+  <body>
+    <div class="user-profile-container">
+  <!--USER PROFILE PAGE -->
+      <h1>{{}}</h1>
+      <h3>Managed Pages</h3>
+
+      <div class="managed-pages-list">
+        <table>
+          <tr ng-repeat="page in pages">
+            <td>{{ vm.user }}</td>
+            <td>{{ vm.user }}</td>
+          </tr>
+        </table>
+      </div>
+
+      <h3>Alert Subscriptions</h3>
+      <div class="alert-subscription-list">
+        <table>
+          <tr><!--How many alert types do we have? I could just hard code them i guess-->
+            <td ng-repeat="alertType in alerts">
+              <label>
+                <input
+                  type="checkbox"
+                  name="{{alertType}}"
+                  value="{{alertType}}"
+                  ng-checked="vm.selection.indexOf(alertType) > -1"
+                  ng-click="toggleSelection(alertType)"
+                > {{alertType}}
+              </label>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <br></br>
+      <form ng-submit="vm.save()"><!--not sure what function i'd call-->
+        <button type="submit" class="save-button btn btn-default">Save</button>
+      </form>
+
+    </div>
+
+  </body>
+</html>
