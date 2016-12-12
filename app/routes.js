@@ -248,7 +248,6 @@ module.exports = function(app, mysql, passport, transporter) {
 					console.log(err);
 					throw err;
 				}
-
 			//console.log(data_received);
 			/*
 			// iterate through the data and print TEST PURPOSES ONLY
@@ -256,7 +255,6 @@ module.exports = function(app, mysql, passport, transporter) {
 				 console.log(element);
 			});
 			*/
-
 			//close the connection and send the data convert array to json.
 			myConn.end();
 			res.send(JSON.stringify(data_received));
@@ -301,14 +299,35 @@ module.exports = function(app, mysql, passport, transporter) {
 
 
 	app.post('/submit_alert', function (req, res) {
-		console.log(req.body.to);
-		console.log(req.body.subject);
-		console.log(req.body.body);
+		//console.log(req.body.to);
+		//console.log(req.body.subject);
+		//console.log(req.body.body);
+		var alertTypes = req.body.to;
+
+		var myConn = testConn(); //open up the connection and send query
+		var receivers = [];
+		var query = "SELECT userEmail FROM AlertGroups WHERE alertType IN ('" + alertTypes.join("','") + "')";
+		//console.log(query);
+		myConn.query(query, function(err, rows, fields) {
+			if (err) {
+				console.log(err);
+				throw err;
+			}
+			var row;
+			for (row in rows) {
+					var email = JSON.stringify(rows[row].userEmail);
+					email = email.replace(/"/g,"");
+					receivers.push(email);
+			}
+			console.log(receivers);
+			//close connection and send back data as JSON
+			myConn.end();
+		});
 
 		// setup e-mail data with unicode symbols
 		var mailOptions = {
-		    sender: 'nroubal@usc.edu', // sender address
-		    to: req.body.to, // list of receivers
+		    sender: 'assessorintranet@usc.edu', // password: assessorintranet
+		    to: receivers, // list of receivers
 		    subject: req.body.subject, // Subject line
 		    text: req.body.body, // plaintext body
 		};

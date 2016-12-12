@@ -17,15 +17,14 @@ angular
     });
     */
     // TEST PURPOSES ONLY ========================================
-    vm.email = 'example@yahoo.com';
-
+    vm.email = 'nroubal@usc.edu';
+    // ===========================================================
 
     $scope.alerts;
     var data_received;
     // Get alerts from db
     $http.post('/get_alerts', data_received)
     .success(function(data) {
-        //vm.alerts = data;
         //console.log(data);
         $scope.alerts = [];
         // Add alerts to angular scope
@@ -50,7 +49,6 @@ angular
 
     // toggle selection for a given alertType by name
     $scope.toggleSelection = function toggleSelection(alertType) {
-
       var idx = vm.selection.indexOf(alertType);
       // is currently selected
       if (idx > -1) {

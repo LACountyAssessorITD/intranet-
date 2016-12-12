@@ -26,15 +26,12 @@ angular
 
     // toggle selection for a given alertType by name
     $scope.toggleSelection = function toggleSelection(alertType) {
-
       var idx = vm.selection.indexOf(alertType);
-
       // is currently selected
       if (idx > -1) {
         vm.selection.splice(idx, 1);
         console.log(vm.selection);
       }
-
       // is newly selected
       else {
         vm.selection.push(alertType);
@@ -46,7 +43,6 @@ angular
     vm.submit = function() {
 
         //console.log(vm.selection);
-
         var post_data = JSON.stringify(
             {
                 'to' : vm.selection,
@@ -65,33 +61,4 @@ angular
             console.error(config);
         })
     }
-    /*
-    var vm = this;
-    // Submit alert too node
-    vm.submit = function() {
-
-        var post_data = JSON.stringify(
-            {
-                'to' : $scope.to,
-                'subject' : $scope.subject,
-                'body' : $scope.body
-            }
-        );
-        //console.log(post_data);
-        $http.post('/submit_alert', post_data)
-        .success(function(data, status, headers, config) {
-            console.log("Posted successfully");
-        }).error(function(data, status, headers, config) {
-            console.error(data);
-            console.error(status);
-            console.error(headers);
-            console.error(config);
-        })
-    }
-
-
-    // List all alert groups
-    // Let user select groups
-
-    */
 });
